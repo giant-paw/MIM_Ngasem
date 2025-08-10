@@ -9,10 +9,9 @@ class Berita extends Model
 {
     use HasFactory;
 
-    /**
-     * The table associated with the model.
-     *
-     * @var string
-     */
-    protected $table = 'guru'; 
+    // Definisikan relasi: Satu berita dimiliki oleh satu user
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

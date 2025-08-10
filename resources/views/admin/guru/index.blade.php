@@ -166,8 +166,12 @@
                                 <td>{{ $guru->nama_lengkap }}</td>
                                 <td>{{ $guru->jabatan }}</td>
                                 <td class="action-buttons">
-                                    <a href="#" class="btn-edit">Edit</a>
-                                    <button type="submit" class="btn-delete">Hapus</button>
+                                    <a href="{{ route('admin.guru.edit', $guru->id) }}" class="btn-edit">Edit</a>
+                                    <form action="{{ route('admin.guru.destroy', $guru->id) }}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                    </form>
                                 </td>
                             </tr>
                         @empty

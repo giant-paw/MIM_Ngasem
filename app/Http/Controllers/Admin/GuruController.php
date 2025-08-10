@@ -28,46 +28,29 @@ class GuruController extends Controller
 
     public function store(Request $request)
     {
-        // 1. Validasi
-        $validatedData = $request->validate([
+        // 1. Validasi Input
+        $request->validate([
             'nama_lengkap' => 'required|string|max:255',
             'jabatan'      => 'required|string|max:255',
             'mapel_diampu' => 'nullable|string',
-            'foto'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'foto'         => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048' // Maks 2MB
         ]);
 
-        // 2. Cek apakah ada file yang diunggah
+        $pathFoto = null;
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
-
-            // 3. Cek apakah file-nya valid
-            if (!$file->isValid()) {
-                dd('File upload tidak valid.');
-            }
-
             $namaFile = time() . '_' . $file->getClientOriginalName();
-
-            try {
-                // Coba simpan file
-                $path = $file->storeAs('public/foto_guru', $namaFile);
-
-                // Dapatkan path absolut dari folder storage
-                $absoluteStoragePath = storage_path('app/public/foto_guru');
-
-                // Hentikan dan tampilkan semuanya
-                dd(
-                    'Status: SUKSES MENYIMPAN!',
-                    'Path Relatif yang disimpan Laravel:', $path,
-                    'Seharusnya file ada di folder (Path Absolut):', $absoluteStoragePath
-                );
-
-            } catch (\Exception $e) {
-                dd('GAGAL MENYIMPAN FILE!', 'Pesan Error:', $e->getMessage());
-            }
-
-        } else {
-            dd('Tidak ada file foto yang terdeteksi dalam request.');
+            $pathFoto = $file->storeAs('public/foto_guru', $namaFile);
         }
+
+        Guru::create([
+            'nama_lengkap' => $request->nama_lengkap,
+            'jabatan'      => $request->jabatan,
+            'mapel_diampu' => $request->mapel_diampu,
+            'foto'         => $pathFoto, 
+        ]);
+
+        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil ditambahkan.');
     }
 
     /**
@@ -78,27 +61,58 @@ class GuruController extends Controller
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Guru $guru)
     {
-        //
+        // Tampilkan halaman edit dan kirim data guru yang akan diedit
+        return view('admin.guru.edit', compact('guru'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Guru $guru)
     {
-        //
+        // 1. Validasi Input
+        $validatedData = $request->validate([
+            'nama_lengkap' => 'required|string|max:255',
+            'jabatan' => 'required|string|max:255',
+            'mapel_diampu' => 'nullable|string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048'
+        ]);
+
+        $pathFoto = $guru->foto; // Gunakan foto lama sebagai default
+        // 2. Proses upload foto baru jika ada
+        if ($request->hasFile('foto')) {
+            // Hapus foto lama jika ada
+            if ($guru->foto) {
+                Storage::delete($guru->foto);
+            }
+            // Simpan foto baru
+            $file = $request->file('foto');
+            $namaFile = time() . '_' . $file->getClientOriginalName();
+            $pathFoto = $file->storeAs('public/foto_guru', $namaFile);
+        }
+
+        // 3. Update data di database
+        $guru->update([
+            'nama_lengkap' => $validatedData['nama_lengkap'],
+            'jabatan' => $validatedData['jabatan'],
+            'mapel_diampu' => $validatedData['mapel_diampu'],
+            'foto' => $pathFoto,
+        ]);
+
+        // 4. Redirect dengan pesan sukses
+        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Guru $guru)
     {
-        //
+        // Hapus foto dari storage jika ada
+        if ($guru->foto) {
+            Storage::delete($guru->foto);
+        }
+
+        // Hapus data dari database
+        $guru->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('admin.guru.index')->with('success', 'Data guru berhasil dihapus.');
     }
 }
