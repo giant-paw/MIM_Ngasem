@@ -119,7 +119,7 @@
             <ul>
                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('admin.guru.index') }}" class="active">Kelola Guru</a></li>
-                <li><a href="#">Kelola Berita</a></li>
+                <li><a href="{{ route('admin.berita.index') }}">Kelola Berita</a></li>
             </ul>
             <form class="logout-form" method="POST" action="{{ route('logout') }}">
                 @csrf
@@ -157,8 +157,11 @@
                                 <td>{{ $dataGuru->firstItem() + $index }}</td>
                                 <td>
                                     @if ($guru->foto)
-                                        <img src="{{ Storage::url($guru->foto) }}" alt="Foto {{ $guru->nama_lengkap }}"
-                                            width="80" style="border-radius: 8px;">
+                                        <!-- <img src="{{ Storage::url($guru->foto) }}" alt="Foto {{ $guru->nama_lengkap }}"
+                                            width="80" style="border-radius: 8px;"> -->
+
+                                        <img src="{{ asset('storage/' . str_replace('public/', '', $guru->foto)) }}" alt="Foto {{ $guru->nama_lengkap }}"
+                                         width="80" style="border-radius: 8px;">
                                     @else
                                         <span style="color: #999;">Tidak ada foto</span>
                                     @endif

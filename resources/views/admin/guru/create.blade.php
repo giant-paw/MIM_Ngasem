@@ -108,7 +108,7 @@
             <ul>
                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('admin.guru.index') }}" class="active">Kelola Guru</a></li>
-                <li><a href="#">Kelola Berita</a></li>
+                <li><a href="{{ route('admin.berita.index') }}">Kelola Berita</a></li>
             </ul>
             <form class="logout-form" method="POST" action="{{ route('logout') }}">
                 @csrf

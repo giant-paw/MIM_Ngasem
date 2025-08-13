@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Guru - Admin Panel</title>
-    {{-- Menggunakan style yang sama dengan create.blade.php --}}
+    <title>Tambah Berita - Admin Panel</title>
+    {{-- Menggunakan style yang sama dengan dashboard --}}
     <style>
         body { font-family: sans-serif; margin: 0; background-color: #f4f7f6; }
         .admin-layout { display: flex; }
@@ -17,10 +17,10 @@
         .form-container { background-color: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
         .form-group { margin-bottom: 20px; }
         .form-group label { display: block; margin-bottom: 5px; font-weight: bold; }
-        .form-group input, .form-group select { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .form-group input, .form-group textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 5px; box-sizing: border-box; }
+        .form-group textarea { min-height: 250px; resize: vertical; }
         .btn-submit { padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
         .btn-back { display: inline-block; margin-bottom: 20px; color: #333; }
-        .current-photo { margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -29,8 +29,8 @@
             <h2>Admin Panel</h2>
             <ul>
                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
-                <li><a href="{{ route('admin.guru.index') }}" class="active">Kelola Guru</a></li>
-                <li><a href="#">Kelola Berita</a></li>
+                <li><a href="{{ route('admin.guru.index') }}">Kelola Guru</a></li>
+                <li><a href="{{ route('admin.berita.index') }}" class="active">Kelola Berita</a></li>
             </ul>
             <form class="logout-form" method="POST" action="{{ route('logout') }}" style="margin-top: 40px;">
                 @csrf
@@ -39,37 +39,28 @@
         </aside>
 
         <main class="main-content">
-            <a href="{{ route('admin.guru.index') }}" class="btn-back">&larr; Kembali ke Daftar Guru</a>
-            <h1>Edit Data Guru</h1>
+            <a href="{{ route('admin.berita.index') }}" class="btn-back">&larr; Kembali ke Daftar Berita</a>
+            <h1>Tulis Berita Baru</h1>
             
             <div class="form-container">
-                <form action="{{ route('admin.guru.update', $guru->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('admin.berita.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                    @method('PUT') {{-- Metode untuk update --}}
-                    
                     <div class="form-group">
-                        <label for="nama_lengkap">Nama Lengkap</label>
-                        <input type="text" id="nama_lengkap" name="nama_lengkap" value="{{ $guru->nama_lengkap }}" required>
+                        <label for="judul">Judul Berita</label>
+                        <input type="text" id="judul" name="judul" required>
                     </div>
                     <div class="form-group">
-                        <label for="jabatan">Jabatan</label>
-                        <input type="text" id="jabatan" name="jabatan" value="{{ $guru->jabatan }}" required>
+                        <label for="konten">Isi Konten</label>
+                        <textarea id="konten" name="konten" required></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="mapel_diampu">Mata Pelajaran Diampu</label>
-                        <input type="text" id="mapel_diampu" name="mapel_diampu" value="{{ $guru->mapel_diampu }}">
+                        <label for="gambar_header">Gambar Header</label>
+                        <input type="file" id="gambar_header" name="gambar_header">
+                        @error('gambar_header')
+                            <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
+                        @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="foto">Ganti Foto (Opsional)</label>
-                        <input type="file" id="foto" name="foto">
-                        @if ($guru->foto)
-                            <div class="current-photo">
-                                <p>Foto saat ini:</p>
-                                <img src="{{ asset('storage/' . str_replace('public/', '', $guru->foto)) }}" alt="Foto {{ $guru->nama_lengkap }}" width="80" style="border-radius: 8px;">
-                            </div>
-                        @endif
-                    </div>
-                    <button type="submit" class="btn-submit">Update Data</button>
+                    <button type="submit" class="btn-submit">Terbitkan</button>
                 </form>
             </div>
         </main>

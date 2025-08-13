@@ -40,7 +40,7 @@ class GuruController extends Controller
         if ($request->hasFile('foto')) {
             $file = $request->file('foto');
             $namaFile = time() . '_' . $file->getClientOriginalName();
-            $pathFoto = $file->storeAs('public/foto_guru', $namaFile);
+            $pathFoto = $file->storeAs('foto_guru', $namaFile, 'public');
         }
 
         Guru::create([
