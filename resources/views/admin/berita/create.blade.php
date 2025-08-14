@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tambah Berita - Admin Panel</title>
-    {{-- Menggunakan style yang sama dengan dashboard --}}
+
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    
     <style>
         body { font-family: sans-serif; margin: 0; background-color: #f4f7f6; }
         .admin-layout { display: flex; }
@@ -22,6 +24,30 @@
         .btn-submit { padding: 10px 20px; background-color: #3498db; color: white; border: none; border-radius: 5px; cursor: pointer; }
         .btn-back { display: inline-block; margin-bottom: 20px; color: #333; }
     </style>
+
+    <script>
+        document.addEventListener('trix-attachment-add', function(event) {
+            let attachment = event.attachment;
+            if (attachment.file) {
+                let formData = new FormData();
+                formData.append('file', attachment.file);
+                formData.append('_token', '{{ csrf_token() }}'); // CSRF Token
+
+                fetch('{{ route("admin.berita.upload-trix") }}', {
+                    method: 'POST',
+                    body: formData
+                }).then(response => response.json())
+                .then(data => {
+                    attachment.setAttributes({
+                        url: data.url,
+                        href: data.url
+                    });
+                }).catch(error => {
+                    console.error('Upload error:', error);
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <div class="admin-layout">
@@ -47,20 +73,51 @@
                     @csrf
                     <div class="form-group">
                         <label for="judul">Judul Berita</label>
-                        <input type="text" id="judul" name="judul" required>
+                        <input type="text" id="judul" name="judul" value="{{ old('judul') }}" required>
                     </div>
+
+                    <div class="form-group">
+                        <label for="kategori_id">Kategori</label>
+                        <select id="kategori_id" name="kategori_id" required>
+                            <option value="">-- Pilih Kategori --</option>
+                            @foreach ($kategori as $item)
+                                <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="kutipan">Kutipan (Ringkasan Singkat)</label>
+                        <input type="text" id="kutipan" name="kutipan" value="{{ old('kutipan') }}">
+                    </div>
+
+                    <!-- <div class="form-group">
+                        <label for="konten">Isi Konten</label>
+                        <textarea id="konten" name="konten" required>{{ old('konten') }}</textarea>
+                    </div> -->
+                    
+
                     <div class="form-group">
                         <label for="konten">Isi Konten</label>
-                        <textarea id="konten" name="konten" required></textarea>
+                        <input id="konten" type="hidden" name="konten" value="{{ old('konten') }}">
+                        <trix-editor input="konten" style="min-height: 300px;"></trix-editor>
                     </div>
+
+
                     <div class="form-group">
-                        <label for="gambar_header">Gambar Header</label>
-                        <input type="file" id="gambar_header" name="gambar_header">
-                        @error('gambar_header')
-                            <div style="color: red; font-size: 0.9em; margin-top: 5px;">{{ $message }}</div>
-                        @enderror
+                        <label for="gambar_utama">Gambar Utama</label>
+                        <input type="file" id="gambar_utama" name="gambar_utama">
                     </div>
-                    <button type="submit" class="btn-submit">Terbitkan</button>
+
+                    <div class="form-group">
+                        <label for="status">Status</label>
+                        <select id="status" name="status" required>
+                            <option value="draft">Simpan sebagai Draft</option>
+                            <option value="published">Langsung Terbitkan</option>
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn-submit">Simpan Berita</button>
                 </form>
             </div>
         </main>

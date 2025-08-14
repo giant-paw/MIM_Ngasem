@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Berita;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str; 
@@ -24,37 +25,54 @@ class BeritaController extends Controller
      */
     public function create()
     {
-        return view('admin.berita.create');
+        // Ambil semua data kategori untuk ditampilkan di dropdown
+        $kategori = Kategori::all();
+        return view('admin.berita.create', compact('kategori'));
     }
 
     public function store(Request $request)
     {
-        // 1. Validasi
         $validatedData = $request->validate([
             'judul' => 'required|string|max:255',
+            'kategori_id' => 'required|exists:kategori,id', // Validasi kategori
+            'kutipan' => 'nullable|string|max:255',
             'konten' => 'required|string',
-            'gambar_header' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'status' => 'required|in:draft,published', // Validasi status
+            'gambar_utama' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
 
         $pathGambar = null;
-        // 2. Proses Upload Gambar
-        if ($request->hasFile('gambar_header')) {
-            $file = $request->file('gambar_header');
+        if ($request->hasFile('gambar_utama')) {
+            $file = $request->file('gambar_utama');
             $namaFile = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
             $pathGambar = $file->storeAs('gambar_berita', $namaFile, 'public');
         }
 
-        // 3. Simpan Data ke Database
         Berita::create([
             'judul' => $validatedData['judul'],
-            'slug' => Str::slug($validatedData['judul']), // Buat slug dari judul
+            'slug' => Str::slug($validatedData['judul']),
+            'kategori_id' => $validatedData['kategori_id'],
+            'kutipan' => $validatedData['kutipan'],
             'konten' => $validatedData['konten'],
-            'gambar_header' => $pathGambar,
-            'user_id' => Auth::id(), // Ambil ID admin yang sedang login
+            'status' => $validatedData['status'],
+            'gambar_utama' => $pathGambar,
+            'user_id' => Auth::id(),
         ]);
 
-        // 4. Redirect dengan pesan sukses
         return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diterbitkan.');
+    }
+
+    public function uploadTrixImage(Request $request)
+    {
+        $request->validate([
+            'file' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $file = $request->file('file');
+        $path = $file->store('public/berita_konten'); // Simpan ke folder baru
+
+        // Kembalikan URL publik dari gambar yang baru disimpan
+        return response()->json(['url' => Storage::url($path)]);
     }
 
     /**

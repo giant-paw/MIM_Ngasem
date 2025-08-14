@@ -23,6 +23,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 
     Route::resource('berita', BeritaController::class);
+
+
+    Route::post('/berita/upload-trix', [BeritaController::class, 'uploadTrixImage'])->name('berita.upload-trix');
 });
 
 require __DIR__.'/auth.php';
