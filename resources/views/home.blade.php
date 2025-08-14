@@ -486,6 +486,81 @@ footer {
         top: -2rem;
     }
 }
+
+/* --- About Section (Tambahan) --- */
+.about-us-section {
+    padding: 5rem 0;
+    background-color: var(--light-color);
+}
+
+.about-us-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr; /* Kolom kiri lebih kecil dari kanan */
+    gap: 3rem;
+    align-items: center;
+}
+
+.about-us-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.about-us-content h2 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+    position: relative;
+    padding-bottom: 0.5rem;
+}
+
+.about-us-content h2::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background-color: var(--secondary-color);
+    border-radius: 2px;
+}
+
+.about-us-content p {
+    color: #555;
+    margin-bottom: 1.5rem;
+    line-height: 1.8;
+}
+
+.about-us-stats {
+    display: flex;
+    gap: 2rem;
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid #e0e0e0;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-item .number {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--primary-color);
+}
+
+.stat-item .label {
+    font-size: 0.9rem;
+    color: #777;
+}
+
+/* Penyesuaian untuk mobile */
+@media (max-width: 992px) {
+    .about-us-grid {
+        grid-template-columns: 1fr; /* Ubah jadi 1 kolom di tablet */
+    }
+}
     </style>
 </head>
 <body>
@@ -496,10 +571,9 @@ footer {
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
             </a>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
-                <li><a href="#berita">Portal Berita</a></li>
-                <li><a href="#testimoni">Testimoni</a></li>
+                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
                 <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
             
@@ -542,24 +616,55 @@ footer {
 
         <section id="testimoni" class="testimonial-section">
             <div class="container">
-                <h2 class="section-title">Testimoni</h2>
+                <h2 class="section-title">Sambutan Kepala Madrasah</h2>
                 <div class="divider"></div>
                 <div class="testimonial-content">
                     <blockquote>
-                        "Ibu adalah madrasah pertama bagi anaknya, setelah itu adalah lingkungan. Bagi saya pendidikan tidak hanya sebatas akademis, namun akhlak & adab juga harus dimiliki. Untuk itu, memilih sekolah sangatlah penting bagi kami, pilihan menyekolahkan keempat anak kami ke Sekolah Al Azhar yang menurut kami Sekolah Islam terbaik."
+                        "Ibu adalah madrasah pertama bagi anaknya, setelah itu adalah lingkungan. Bagi saya pendidikan tidak hanya sebatas akademis, namun akhlak & adab juga harus dimiliki. Untuk itu, memilih sekolah sangatlah penting bagi kami, pilihan menyekolahkan keempat anak kami ke MI Muhammadiyah Ngasem Selatan yang menurut kami Sekolah Islam terbaik."
                     </blockquote>
-                    <img src="https://i.pravatar.cc/100?u=jihan" alt="Foto Jihan Fahira" class="testimonial-avatar">
-                    <p class="testimonial-name">Jihan Fahira</p>
-                    <p class="testimonial-role">Entrepreneur</p>
+                    <img src="{{ asset('images/pakAgungzoom.JPG') }}" alt="Foto Jihan Fahira" class="testimonial-avatar">
+                    <p class="testimonial-name">Agung Nugroho, S.Pd.I</p>
+                    <p class="testimonial-role">Kepala Madrasah</p>
                 </div>
                 <div class="testimonial-dots">
                     <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
                 </div>
             </div>
         </section>
+        </section>
+<section class="about-us-section">
+    <div class="container">
+        <div class="about-us-grid">
+            <div class="about-us-image">
+                <img src="{{ asset('images/sekolah.jpeg') }}" alt="Gedung Sekolah MI Muhammadiyah Ngasem Selatan">
+            </div>
+            <div class="about-us-content">
+                <h2>Cerita Kami</h2>
+                <p>
+                    MI Muhammadiyah Ngasem Selatan adalah lembaga pendidikan yang berdedikasi untuk menciptakan lingkungan belajar yang inspiratif dan penuh kasih. Kami percaya bahwa pendidikan berkualitas adalah kunci untuk membuka potensi tak terbatas pada setiap anak.
+                </p>
+                <p>
+                    Dengan komitmen kuat, kami berupaya membekali generasi penerus dengan <strong>pendidikan modern dan teknologi</strong> tanpa meninggalkan akar <strong>budaya dan nilai-nilai keislaman</strong>. Kami siap mendampingi setiap siswa dalam perjalanan mereka menemukan ilmu dan membentuk karakter.
+                </p>
+                <div class="about-us-stats">
+                    <div class="stat-item">
+                        <span class="number">10+</span>
+                        <span class="label">Tenaga Pendidik</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number">70+</span>
+                        <span class="label">Siswa Aktif</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="number">6</span>
+                        <span class="label">Ruang Kelas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="berita" class="news-section">
     </main>
     
     <footer>

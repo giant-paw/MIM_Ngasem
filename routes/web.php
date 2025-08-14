@@ -9,7 +9,7 @@ use App\Http\Controllers\PublicController;
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
 
 // --- Grup Route Khusus Untuk Admin ---
 // Semua route di dalam grup ini akan:
@@ -32,9 +32,13 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
 
-Route::get('/data-guru', function () {
-    return view('dataguru');
-})->name('dataguru.index');
+Route::get('/portal-berita', [PublicController::class, 'portalBerita'])->name('portal.index');
+
+// Route::get('/data-guru', function () {
+//     return view('dataguru');
+// })->name('dataguru.index');
+
+Route::get('/data-guru', [PublicController::class, 'dataGuru'])->name('dataguru.index');
 
 Route::get('/tentang-kami', function () {
     return view('about');

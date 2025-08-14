@@ -198,10 +198,9 @@
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
             </a>
             <ul class="nav-links">
-                <li><a href="#">Home</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('dataguru.index') }}" class="active">Data Guru</a></li>
-                <li><a href="index.html#berita">Portal Berita</a></li>
-                <li><a href="index.html#testimoni">Testimoni</a></li>
+                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
                 <li><a href="#">About Us</a></li>
             </ul>
             <a href="{{ route('login') }}" class="login-button">Login Admin</a>
@@ -213,36 +212,30 @@
         <section class="teachers-section">
             <div class="container">
                 <h2 class="section-title">Data Guru</h2>
+                
                 <div class="divider"></div>
+                
                 <div class="teachers-grid">
-                    <div class="teacher-card">
-                        <img src="images/spiderman.jpeg" alt="Foto Nurwahyu Alamsyah">
-                        <div class="teacher-info">
-                            <h3>Nurwahyu Alamsyah, S.Kom., M.Kom., M.IM., Ph.D.</h3>
-                            <p>Kepala Program Studi</p>
+                    @forelse ($daftarGuru as $guru)
+                        <div class="teacher-card">
+                            {{-- Tampilkan foto jika ada, jika tidak, tampilkan placeholder --}}
+                            @if ($guru->foto)
+                                <img src="{{ Storage::url($guru->foto) }}" alt="Foto {{ $guru->nama_lengkap }}">
+                            @else
+                                {{-- Anda bisa gunakan placeholder jika tidak ada foto --}}
+                                <img src="https://placehold.co/280x320/e8e8e8/666?text=Foto" alt="Foto tidak tersedia">
+                            @endif
+                            
+                            <div class="teacher-info">
+                                <h3>{{ $guru->nama_lengkap }}</h3>
+                                <p>{{ $guru->jabatan }}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div class="teacher-card">
-                        <img src="images/spiderman.jpeg" alt="Foto Chayadi Oktorny N.S.">
-                        <div class="teacher-info">
-                            <h3>Chayadi Oktorny N.S., S.T., M.Eng.</h3>
-                            <p>Sekretaris Program Studi</p>
-                        </div>
-                    </div>
-                    <div class="teacher-card">
-                        <img src="images/spiderman.jpeg" alt="Foto Dr. Nasy'an Taufiq Al Ghifari">
-                        <div class="teacher-info">
-                            <h3>Dr. Nasy'an Taufiq Al Ghifari, S.T., M.T.</h3>
-                            <p>Koordinator Laboratorium</p>
-                        </div>
-                    </div>
-                    <div class="teacher-card">
-                        <img src="images/spiderman.jpeg" alt="Foto Dr. Ir. Dwijo Purbohadi">
-                        <div class="teacher-info">
-                            <h3>Dr. Ir. Dwijo Purbohadi, M.T.</h3>
-                            <p>Gugus Kendali Mutu</p>
-                        </div>
-                    </div>
+                    @empty
+                        {{-- Pesan ini akan muncul jika tabel guru di database kosong --}}
+                        <p style="text-align: center; grid-column: 1 / -1;">Saat ini belum ada data guru yang tersedia.</p>
+                    @endforelse
+                    
                 </div>
             </div>
         </section>
