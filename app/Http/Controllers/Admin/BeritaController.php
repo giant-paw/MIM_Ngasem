@@ -75,12 +75,9 @@ class BeritaController extends Controller
         return response()->json(['url' => Storage::url($path)]);
     }
 
-    /**
-     * Display the specified resource.
-     */
     public function show(Berita $berita)
     {
-        //
+        return view('berita.show', compact('berita'));
     }
 
     /**

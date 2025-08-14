@@ -22,6 +22,7 @@
         .btn-edit { background-color: #f39c12; }
         .btn-delete { background-color: #e74c3c; }
         .btn-add { display: inline-block; margin-bottom: 20px; padding: 10px 15px; background-color: #2ecc71; color: white; text-decoration: none; border-radius: 5px;}
+        .btn-preview { background-color: #3498db; }
     </style>
 </head>
 <body>
@@ -67,10 +68,17 @@
                                 <td>{{ $item->judul }}</td>
                                 <td>{{ $item->user->name }}</td>
                                 <td>{{ $item->created_at->format('d M Y') }}</td>
+                                
                                 <td class="action-buttons">
-                                    <a href="#" class="btn-edit">Edit</a>
-                                    <button type="submit" class="btn-delete">Hapus</button>
+                                    <a href="{{ route('berita.show', $item->slug) }}" target="_blank" class="btn-preview">Preview</a>
+                                    <a href="{{-- route('admin.berita.edit', $item->id) --}}" class="btn-edit">Edit</a>
+                                    <form action="{{-- route('admin.berita.destroy', $item->id) --}}" method="POST" style="display:inline;">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn-delete" onclick="return confirm('Yakin ingin hapus?')">Hapus</button>
+                                    </form>
                                 </td>
+
                             </tr>
                         @empty
                             <tr>
