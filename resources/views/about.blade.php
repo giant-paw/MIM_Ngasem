@@ -5,235 +5,99 @@
      <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <title>Tentang Kami - Yayasan Pendidikan Modern</title>
 
-     {{-- Menggunakan CSS dan Font yang sama dari halaman utama --}}
-     <link rel="stylesheet" href="{{ asset('css/home.css') }}">
      <link rel="preconnect" href="https://fonts.googleapis.com">
      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
      <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
      <style>
-         /* --- Style khusus untuk Halaman "About Us" --- */
-         body {
-             background-color: #f9f9f9;
+         /* --- Variabel Global & Reset Dasar --- */
+         :root {
+             --primary-color: #0d47a1; /* Biru Tua */
+             --secondary-color: #1976d2; /* Biru Terang */
+             --light-color: #ffffff;
+             --dark-color: #333333;
+             --font-family: 'Poppins', sans-serif;
          }
+         * { margin: 0; padding: 0; box-sizing: border-box; }
+         body { font-family: var(--font-family); line-height: 1.6; color: var(--dark-color); background-color: #f9f9f9; }
+         a { text-decoration: none; color: inherit; }
+         ul { list-style: none; }
+         img { max-width: 100%; display: block; }
+         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+         main { padding-top: 80px; } /* Memberi ruang untuk header fixed */
+         .section-title { text-align: center; font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+         .divider { width: 80px; height: 4px; background-color: var(--secondary-color); margin: 0 auto 3rem; border-radius: 2px; }
 
-         .about-header {
-             padding-top: 120px; /* Memberi jarak dari navbar fixed */
-             padding-bottom: 4rem;
-             background-color: var(--light-color);
-             text-align: center;
-         }
+         /* --- Header & Navigation Bar --- */
+         header { position: fixed; top: 0; left: 0; width: 100%; background-color: var(--light-color); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); z-index: 1000; }
+         nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0.8rem 2rem; }
+         .logo img { height: 45px; }
+         .nav-links { display: flex; gap: 2rem; align-items: center; }
+         .nav-links a { font-weight: 600; color: var(--primary-color); padding: 0.5rem 0; position: relative; transition: color 0.3s ease; }
+         .nav-links a::after { content: ''; position: absolute; width: 100%; height: 2px; background-color: var(--secondary-color); bottom: 0; left: 0; transform: scaleX(0); transform-origin: center; transition: transform 0.3s ease-in-out; }
+         .nav-links a:hover, .nav-links a.active { color: var(--secondary-color); }
+         .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+         .login-button { background-color: var(--primary-color); color: var(--light-color); padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600; transition: background-color 0.3s ease; margin-left: 1rem; }
+         .login-button:hover { background-color: var(--secondary-color); }
+         .hamburger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--primary-color); }
 
-         .about-section {
-             padding: 4rem 0;
-         }
+         /* --- Style Halaman "About Us" --- */
+         .about-header { padding-top: 120px; padding-bottom: 4rem; background-color: var(--light-color); text-align: center; }
+         .about-section { padding: 4rem 0; }
+         .about-section p { max-width: 800px; margin: 0 auto 1.5rem auto; text-align: justify; color: #555; }
+         .vision-mission { display: flex; gap: 2rem; margin-top: 2rem; flex-wrap: wrap; }
+         .vision-mission .card { flex: 1; background-color: var(--light-color); padding: 2rem; border-radius: 10px; box-shadow: 0 4px 15px rgba(0,0,0,0.07); min-width: 280px; }
+         .vision-mission .card h3 { color: var(--primary-color); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem; }
+         .facilities-section { padding: 4rem 0; background-color: #e9ecef; }
+         .facilities-image { border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); overflow: hidden; margin-top: 2rem; }
+         .facilities-image img { width: 100%; display: block; }
 
-         .about-section p {
-             max-width: 800px;
-             margin: 0 auto 1.5rem auto;
-             text-align: justify;
-             color: #555;
-         }
+         /* --- FOOTER  --- */
+         footer { background-color: #1a1a1a; color: var(--light-color); padding: 2.5rem 0; }
+         .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; }
+         .footer-info { display: flex; align-items: center; gap: 1rem; }
+         .footer-logo { height: 80px; }
+         .footer-school-name { font-size: 1.5rem; font-weight: 600; color: #f0f0f0; }
+         .social-links { display: flex; flex-direction: row; align-items: center; gap: 1.2rem; }
+         .social-links a { color: #ccc; transition: color 0.3s ease, transform 0.3s ease; }
+         .social-links a:hover { color: var(--light-color); transform: translateY(-3px); }
+         .social-links i { font-size: 1.6rem; }
+         .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
 
-         .vision-mission {
-             display: flex;
-             gap: 2rem;
-             margin-top: 2rem;
-             flex-wrap: wrap;
+         /* --- Media Queries untuk Responsif --- */
+         @media (max-width: 768px) {
+             nav { padding: 0.8rem 1.5rem; }
+             .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 60%; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+             .nav-links.active { right: 0; }
+             .nav-links a { font-size: 1.2rem; }
+             .login-button { display: none; }
+             .hamburger { display: block; z-index: 1001; }
+             .section-title { font-size: 2rem; }
+             
+             /* Penyesuaian Footer untuk Mobile */
+             .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
+             .footer-info { flex-direction: column; gap: 0.8rem; }
+             .footer-school-name { font-size: 1.2rem; }
+             .social-links { justify-content: center; }
          }
-
-         .vision-mission .card {
-             flex: 1;
-             background-color: var(--light-color);
-             padding: 2rem;
-             border-radius: 10px;
-             box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-             min-width: 280px;
-         }
-
-         .vision-mission .card h3 {
-             color: var(--primary-color);
-             margin-bottom: 1rem;
-             display: flex;
-             align-items: center;
-             gap: 0.5rem;
-         }
-
-         .team-grid {
-             display: grid;
-             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-             gap: 2rem;
-             margin-top: 2rem;
-         }
-
-         .team-card {
-             background: var(--light-color);
-             border-radius: 10px;
-             box-shadow: 0 4px 15px rgba(0,0,0,0.07);
-             text-align: center;
-             padding: 2rem 1rem;
-             transition: transform 0.3s ease, box-shadow 0.3s ease;
-         }
-
-         .team-card:hover {
-             transform: translateY(-8px);
-             box-shadow: 0 8px 25px rgba(0,0,0,0.12);
-         }
-
-         .team-card img {
-             width: 120px;
-             height: 120px;
-             border-radius: 50%;
-             margin: 0 auto 1rem;
-             object-fit: cover;
-             border: 4px solid var(--secondary-color);
-         }
-
-         .team-card h4 {
-             font-size: 1.2rem;
-             color: var(--primary-color);
-             margin-bottom: 0.25rem;
-         }
-
-         .team-card .role {
-             color: #777;
-             font-weight: 500;
-         }
-         footer {
-             background-color: #1a1a1a; /* Sedikit lebih lembut dari #111 */
-             color: var(--light-color);
-             padding: 2.5rem 0; /* Sedikit padding vertikal */
-         }
-
-         /* BARU: Kontainer utama untuk layout flex */
-         .footer-content {
-             display: flex;
-             justify-content: space-between; /* Mendorong item ke ujung kiri dan kanan */
-             align-items: center; /* Menjaga semua item sejajar di tengah secara vertikal */
-             margin-bottom: 2rem; /* Jarak ke teks copyright */
-             flex-wrap: wrap; /* Agar responsif di layar kecil */
-             gap: 1.5rem; /* Jarak jika wrapping terjadi */
-         }
-
-         /* BARU: Grup untuk logo dan nama sekolah */
-         .footer-info {
-             display: flex;
-             align-items: center;
-             gap: 1rem; /* Jarak antara logo dan teks */
-         }
-
-         /* BARU: Aturan khusus untuk logo di footer */
-         .footer-logo {
-             height: 80px;
-         }
-
-         /* BARU: Aturan untuk nama sekolah */
-         .footer-school-name {
-             font-size: 2rem; /* Ukuran font sedikit lebih besar */
-             font-weight: 600;
-             color: #f0f0f0;
-         }
-
-         /* MODIFIKASI: Mengubah social-links menjadi baris */
-         .social-links {
-             display: flex;
-             flex-direction: row; /* Kunci utama: mengubah dari column ke row */
-             align-items: center;
-             gap: 1.2rem; /* Jarak antar ikon */
-         }
-
-         .social-links a {
-             color: #ccc;
-             transition: color 0.3s ease, transform 0.3s ease;
-         }
-
-         .social-links a:hover {
-             color: var(--light-color); /* Warna saat hover */
-             transform: translateY(-3px); /* Efek sedikit terangkat */
-         }
-
-         .social-links i {
-             font-size: 1.6rem; /* Ukuran ikon diperbesar sedikit */
-         }
-
-         .footer-bottom {
-             text-align: center;
-             border-top: 1px solid #444; /* Garis pemisah yang lebih soft */
-             padding-top: 1.5rem;
-             font-size: 0.9rem;
-             color: #aaa;
-         }
-
-         .login-button {
-             background-color: var(--primary-color);
-             color: var(--light-color);
-             padding: 0.5rem 1.5rem;
-             border-radius: 20px;
-             font-weight: 600;
-             transition: background-color 0.3s ease;
-             margin-left: 1rem;
-         }
-
-         .login-button:hover {
-             background-color: var(--secondary-color);
-             color: var(--light-color);
-         }
-
-         /* Style untuk section fasilitas */
-         .facilities-section {
-             padding: 4rem 0;
-             background-color: #e9ecef; /* Warna latar belakang sedikit berbeda */
-         }
-
-         .facilities-image {
-             border-radius: 10px;
-             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-             overflow: hidden;
-             margin-top: 2rem;
-         }
-
-         .facilities-image img {
-             width: 100%;
-             display: block;
-         }
-
-         .footer-content {
-        flex-direction: column;   /* Ubah layout menjadi vertikal */
-        justify-content: center;  /* Pusatkan item secara vertikal */
-        text-align: center;       /* Buat teks di dalamnya rata tengah */
-        gap: 2.5rem;              /* Beri jarak lebih besar antar elemen */
-    }
-    .footer-info {
-        flex-direction: column; /* Buat logo dan nama sekolah juga vertikal */
-        gap: 0.8rem;
-    }
-    .footer-school-name {
-        font-size: 1.5rem; /* Perkecil sedikit font nama sekolah di mobile */
-    }
-    .social-links {
-        justify-content: center; /* Pastikan ikon sosmed juga di tengah */
-    }
      </style>
  </head>
  <body>
 
-     {{-- Kita panggil kembali header/navbar yang sama --}}
      <header>
          <nav>
              <a href="/" class="logo">
-                 <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
+                 <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem">
              </a>
              <ul class="nav-links">
                  <li><a href="/">Home</a></li>
                  <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
                  <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
-                 <li><a href="{{ route('about.index') }}">About Us</a></li>
+                 <li><a href="{{ route('about.index') }}" class="active">About Us</a></li>
              </ul>
              <a href="{{ route('login') }}" class="login-button">Login Admin</a>
-             <button class="hamburger" aria-label="Toggle Menu">
-                 <i class="fas fa-bars"></i>
-             </button>
+             <button class="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
          </nav>
      </header>
 
@@ -268,6 +132,7 @@
                  <p style="margin-top: 1.5rem; text-align: center; color: #555;">Gedung sekolah yang representatif dengan fasilitas olahraga dan ruang kelas yang nyaman.</p>
              </div>
          </section>
+
          <section class="about-section" style="background-color: var(--light-color);">
             <div class="container">
                 <h2 style="text-align:center; color: var(--primary-color); margin-bottom: 2rem;">Visi & Misi</h2>
@@ -288,10 +153,8 @@
                 </div>
             </div>
         </section>
-
      </main>
 
-     {{-- Kita panggil kembali footer yang sama --}}
      <footer>
          <div class="container">
              <div class="footer-content">

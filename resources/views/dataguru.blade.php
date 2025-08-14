@@ -100,111 +100,34 @@
         .teacher-info h3 { font-size: 1.2rem; margin-bottom: 0.25rem; }
         .teacher-info p { color: #666; }
 
-        /* Footer */
-        footer {
-    background-color: #1a1a1a; /* Sedikit lebih lembut dari #111 */
-    color: var(--light-color);
-    padding: 2.5rem 0; /* Sedikit padding vertikal */
-}
+        /* --- FOOTER  --- */
+         footer { background-color: #1a1a1a; color: var(--light-color); padding: 2.5rem 0; }
+         .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; }
+         .footer-info { display: flex; align-items: center; gap: 1rem; }
+         .footer-logo { height: 80px; }
+         .footer-school-name { font-size: 1.5rem; font-weight: 600; color: #f0f0f0; }
+         .social-links { display: flex; flex-direction: row; align-items: center; gap: 1.2rem; }
+         .social-links a { color: #ccc; transition: color 0.3s ease, transform 0.3s ease; }
+         .social-links a:hover { color: var(--light-color); transform: translateY(-3px); }
+         .social-links i { font-size: 1.6rem; }
+         .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
 
-/* BARU: Kontainer utama untuk layout flex */
-.footer-content {
-    display: flex;
-    justify-content: space-between; /* Mendorong item ke ujung kiri dan kanan */
-    align-items: center; /* Menjaga semua item sejajar di tengah secara vertikal */
-    margin-bottom: 2rem; /* Jarak ke teks copyright */
-    flex-wrap: wrap; /* Agar responsif di layar kecil */
-    gap: 1.5rem; /* Jarak jika wrapping terjadi */
-}
-
-/* BARU: Grup untuk logo dan nama sekolah */
-.footer-info {
-    display: flex;
-    align-items: center;
-    gap: 1rem; /* Jarak antara logo dan teks */
-}
-
-/* BARU: Aturan khusus untuk logo di footer */
-.footer-logo {
-    height: 80px;
-}
-
-/* BARU: Aturan untuk nama sekolah */
-.footer-school-name {
-    font-size: 2rem; /* Ukuran font sedikit lebih besar */
-    font-weight: 600;
-    color: #f0f0f0;
-}
-
-/* MODIFIKASI: Mengubah social-links menjadi baris */
-.social-links {
-    display: flex;
-    flex-direction: row; /* Kunci utama: mengubah dari column ke row */
-    align-items: center;
-    gap: 1.2rem; /* Jarak antar ikon */
-}
-
-.social-links a {
-    color: #ccc;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-.social-links a:hover {
-    color: var(--light-color); /* Warna saat hover */
-    transform: translateY(-3px); /* Efek sedikit terangkat */
-}
-
-.social-links i {
-    font-size: 1.6rem; /* Ukuran ikon diperbesar sedikit */
-}
-
-.footer-bottom {
-    text-align: center;
-    border-top: 1px solid #444; /* Garis pemisah yang lebih soft */
-    padding-top: 1.5rem;
-    font-size: 0.9rem;
-    color: #aaa;
-}
-        /* Media Queries untuk Responsif */
-        @media (max-width: 768px) {
-            nav { padding: 0.8rem 1.5rem; }
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 60%;
-                background-color: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(5px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2.5rem;
-                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            }
-            .nav-links.active { right: 0; }
-            .nav-links a { font-size: 1.2rem; }
-            .login-button { display: none; }
-            .hamburger { display: block; z-index: 1001; }
-            .section-title { font-size: 2rem; }
-        }
-
-        .footer-content {
-        flex-direction: column;   /* Ubah layout menjadi vertikal */
-        justify-content: center;  /* Pusatkan item secara vertikal */
-        text-align: center;       /* Buat teks di dalamnya rata tengah */
-        gap: 2.5rem;              /* Beri jarak lebih besar antar elemen */
-    }
-    .footer-info {
-        flex-direction: column; /* Buat logo dan nama sekolah juga vertikal */
-        gap: 0.8rem;
-    }
-    .footer-school-name {
-        font-size: 1.5rem; /* Perkecil sedikit font nama sekolah di mobile */
-    }
-    .social-links {
-        justify-content: center; /* Pastikan ikon sosmed juga di tengah */
-    }
+         /* --- Media Queries untuk Responsif --- */
+         @media (max-width: 768px) {
+             nav { padding: 0.8rem 1.5rem; }
+             .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 60%; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+             .nav-links.active { right: 0; }
+             .nav-links a { font-size: 1.2rem; }
+             .login-button { display: none; }
+             .hamburger { display: block; z-index: 1001; }
+             .section-title { font-size: 2rem; }
+             
+             /* Penyesuaian Footer untuk Mobile */
+             .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
+             .footer-info { flex-direction: column; gap: 0.8rem; }
+             .footer-school-name { font-size: 1.2rem; }
+             .social-links { justify-content: center; }
+         }
         
     </style>
 </head>
