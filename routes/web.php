@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BeritaController;
+use App\Http\Controllers\PublicController;
 
 Route::get('/', function () {
     return view('home');
@@ -34,5 +35,9 @@ Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('be
 Route::get('/data-guru', function () {
     return view('dataguru');
 })->name('dataguru.index');
+
+Route::get('/tentang-kami', function () {
+    return view('about');
+})->name('about.index');
 
 require __DIR__.'/auth.php';

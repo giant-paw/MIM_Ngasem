@@ -347,45 +347,68 @@ nav {
 
 /* --- Footer --- */
 footer {
-    background-color: #111;
+    background-color: #1a1a1a; /* Sedikit lebih lembut dari #111 */
     color: var(--light-color);
-    padding: 3rem 0 1.5rem;
-    margin-top: 2rem; /* Mengurangi jarak dari section atas */
+    padding: 2.5rem 0; /* Sedikit padding vertikal */
 }
 
+/* BARU: Kontainer utama untuk layout flex */
+.footer-content {
+    display: flex;
+    justify-content: space-between; /* Mendorong item ke ujung kiri dan kanan */
+    align-items: center; /* Menjaga semua item sejajar di tengah secara vertikal */
+    margin-bottom: 2rem; /* Jarak ke teks copyright */
+    flex-wrap: wrap; /* Agar responsif di layar kecil */
+    gap: 1.5rem; /* Jarak jika wrapping terjadi */
+}
+
+/* BARU: Grup untuk logo dan nama sekolah */
+.footer-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem; /* Jarak antara logo dan teks */
+}
+
+/* BARU: Aturan khusus untuk logo di footer */
+.footer-logo {
+    height: 80px;
+}
+
+/* BARU: Aturan untuk nama sekolah */
+.footer-school-name {
+    font-size: 2rem; /* Ukuran font sedikit lebih besar */
+    font-weight: 600;
+    color: #f0f0f0;
+}
+
+/* MODIFIKASI: Mengubah social-links menjadi baris */
 .social-links {
     display: flex;
-    flex-direction: column; /* Selalu vertikal */
-    justify-content: center;
+    flex-direction: row; /* Kunci utama: mengubah dari column ke row */
     align-items: center;
-    gap: 1.5rem; /* Mengurangi jarak antar link */
-    margin-bottom: 2rem;
+    gap: 1.2rem; /* Jarak antar ikon */
 }
 
 .social-links a {
-    display: flex;
-    align-items: center;
-    gap: 0.8rem;
-    font-size: 1.1rem;
-    font-weight: 500;
+    color: #ccc;
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
 .social-links a:hover {
-    color: #a9d4ff;
-    transform: translateY(-3px);
+    color: var(--light-color); /* Warna saat hover */
+    transform: translateY(-3px); /* Efek sedikit terangkat */
 }
 
 .social-links i {
-    font-size: 1.8rem;
+    font-size: 1.6rem; /* Ukuran ikon diperbesar sedikit */
 }
 
 .footer-bottom {
     text-align: center;
-    border-top: 1px solid #333;
+    border-top: 1px solid #444; /* Garis pemisah yang lebih soft */
     padding-top: 1.5rem;
     font-size: 0.9rem;
-    color: #ccc;
+    color: #aaa;
 }
 
 
@@ -477,7 +500,7 @@ footer {
                 <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
                 <li><a href="#berita">Portal Berita</a></li>
                 <li><a href="#testimoni">Testimoni</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
             
             <a href="{{ route('login') }}" class="login-button">Login Admin</a>
@@ -540,25 +563,35 @@ footer {
     </main>
     
     <footer>
-        <div class="container">
+    <div class="container">
+        <div class="footer-content">
+            
+            <div class="footer-info">
+                <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem" class="footer-logo">
+                <p class="footer-school-name">MI Muhammadiyah Ngasem Selatan</p>
+            </div>
+
             <div class="social-links">
-                <a href="https://www.instagram.com/mim.ngasem" target="_blank">
-                    <i class="fab fa-instagram"></i> mim.ngasem
+                <a href="https://www.instagram.com/mim.ngasem" target="_blank" aria-label="Instagram">
+                    <i class="fab fa-instagram"></i>
                 </a>
-                <a href="https://www.tiktok.com/@mi_muhammadiyah_ngasem" target="_blank">
-                    <i class="fab fa-tiktok"></i> mi_muhammadiyah_ngasem
+                <a href="https://www.tiktok.com/@mi_muhammadiyah_ngasem" target="_blank" aria-label="TikTok">
+                    <i class="fab fa-tiktok"></i>
                 </a>
-                <a href="https://www.facebook.com/mimuhammadiyahngasem" target="_blank">
-                    <i class="fab fa-facebook"></i> mi muhammadiyah ngasem
+                <a href="https://www.facebook.com/mimuhammadiyahngasem" target="_blank" aria-label="Facebook">
+                    <i class="fab fa-facebook"></i>
                 </a>
-                <a href="mailto:mimuhngasem@gmail.com">
-                    <i class="fas fa-envelope"></i> mimuhngasem@gmail.com
+                <a href="mailto:mimuhngasem@gmail.com" aria-label="Email">
+                    <i class="fas fa-envelope"></i>
                 </a>
             </div>
-            <div class="footer-bottom">
-                <p>&copy; 2025 Yayasan Pendidikan Modern. All Rights Reserved.</p>
-            </div>
+
         </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2025 KKN REG UMY 114. All Rights Reserved.</p>
+        </div>
+    </div>
     </footer>
     
     <script>
