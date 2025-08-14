@@ -8,6 +8,8 @@ use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str; 
+use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 
 class BeritaController extends Controller
 {
@@ -80,27 +82,65 @@ class BeritaController extends Controller
         return view('berita.show', compact('berita'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Berita $berita)
+     public function edit(Berita $berita)
     {
-        //
+        // Ambil semua kategori untuk dropdown
+        $kategori = Kategori::all();
+        // Tampilkan halaman edit, kirim data berita dan data kategori
+        return view('admin.berita.edit', compact('berita', 'kategori'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(Request $request, Berita $berita)
     {
-        //
+        // 1. Validasi
+        $validatedData = $request->validate([
+            'judul' => ['required', 'string', 'max:255', Rule::unique('berita')->ignore($berita->id)],
+            'kategori_id' => 'required|exists:kategori,id',
+            'kutipan' => 'nullable|string|max:255',
+            'konten' => 'required|string',
+            'status' => 'required|in:draft,published',
+            'gambar_utama' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $pathGambar = $berita->gambar_utama;
+        // 2. Proses upload gambar baru jika ada
+        if ($request->hasFile('gambar_utama')) {
+            // Hapus gambar lama agar tidak menumpuk
+            if ($berita->gambar_utama) {
+                Storage::delete($berita->gambar_utama);
+            }
+            // Simpan gambar baru
+            $file = $request->file('gambar_utama');
+            $namaFile = time() . '_' . Str::slug($request->judul) . '.' . $file->getClientOriginalExtension();
+            $pathGambar = $file->storeAs('gambar_berita', $namaFile, 'public');
+        }
+        
+        // 3. Update data di database
+        $berita->update([
+            'judul' => $validatedData['judul'],
+            'slug' => Str::slug($validatedData['judul']),
+            'kategori_id' => $validatedData['kategori_id'],
+            'kutipan' => $validatedData['kutipan'],
+            'konten' => $validatedData['konten'],
+            'status' => $validatedData['status'],
+            'gambar_utama' => $pathGambar,
+        ]);
+        
+        // 4. Redirect dengan pesan sukses
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil diperbarui.');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Berita $berita)
     {
-        //
+        // Hapus gambar utama dari storage jika ada
+        if ($berita->gambar_utama) {
+            Storage::delete($berita->gambar_utama);
+        }
+
+        // Hapus data dari database
+        $berita->delete();
+
+        // Redirect dengan pesan sukses
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus.');
     }
 }

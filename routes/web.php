@@ -21,8 +21,9 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::resource('guru', GuruController::class);
 
-
-    Route::resource('berita', BeritaController::class);
+    Route::resource('berita', BeritaController::class)->parameters([
+        'berita' => 'berita'
+    ]);
 
 
     Route::post('/berita/upload-trix', [BeritaController::class, 'uploadTrixImage'])->name('berita.upload-trix');
@@ -30,5 +31,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
 Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
 
+Route::get('/data-guru', function () {
+    return view('dataguru');
+})->name('dataguru.index');
 
 require __DIR__.'/auth.php';
