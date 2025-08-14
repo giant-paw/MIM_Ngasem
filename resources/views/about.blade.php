@@ -197,6 +197,23 @@
              width: 100%;
              display: block;
          }
+
+         .footer-content {
+        flex-direction: column;   /* Ubah layout menjadi vertikal */
+        justify-content: center;  /* Pusatkan item secara vertikal */
+        text-align: center;       /* Buat teks di dalamnya rata tengah */
+        gap: 2.5rem;              /* Beri jarak lebih besar antar elemen */
+    }
+    .footer-info {
+        flex-direction: column; /* Buat logo dan nama sekolah juga vertikal */
+        gap: 0.8rem;
+    }
+    .footer-school-name {
+        font-size: 1.5rem; /* Perkecil sedikit font nama sekolah di mobile */
+    }
+    .social-links {
+        justify-content: center; /* Pastikan ikon sosmed juga di tengah */
+    }
      </style>
  </head>
  <body>

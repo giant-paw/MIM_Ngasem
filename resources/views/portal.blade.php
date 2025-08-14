@@ -119,6 +119,60 @@
              font-size: 0.9rem;
              color: #aaa;
          }
+
+         @media (max-width: 768px) {
+    nav { 
+        padding: 0.8rem 1.5rem; 
+    }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 60%;
+        background-color: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(5px);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 2.5rem;
+        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+    .nav-links.active { 
+        right: 0; 
+    }
+    .nav-links a { 
+        font-size: 1.2rem; 
+    }
+    .login-button { 
+        display: none; 
+    }
+    .hamburger { 
+        display: block; 
+        z-index: 1001; 
+    }
+    .section-title { 
+        font-size: 2rem; 
+    }
+
+    /* Penyesuaian Footer untuk Mobile */
+    .footer-content {
+        flex-direction: column;   /* Ubah layout menjadi vertikal */
+        justify-content: center;  /* Pusatkan item secara vertikal */
+        text-align: center;       /* Buat teks di dalamnya rata tengah */
+        gap: 2.5rem;              /* Beri jarak lebih besar antar elemen */
+    }
+    .footer-info {
+        flex-direction: column; /* Buat logo dan nama sekolah juga vertikal */
+        gap: 0.8rem;
+    }
+    .footer-school-name {
+        font-size: 1.5rem; /* Perkecil sedikit font nama sekolah di mobile */
+    }
+    .social-links {
+        justify-content: center; /* Pastikan ikon sosmed juga di tengah */
+    }
+}
     </style>
 </head>
 <body>
