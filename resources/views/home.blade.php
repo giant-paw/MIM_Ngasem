@@ -531,7 +531,7 @@ nav {
 
     <header>
         <nav>
-            <a href="#" class="logo">
+            <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
             </a>
             <ul class="nav-links">

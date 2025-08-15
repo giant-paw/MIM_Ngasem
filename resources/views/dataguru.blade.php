@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     
     <style>
-        /* --- CSS BARU YANG SESUAI DENGAN INDEX.HTML MODERN --- */
         :root {
             --primary-color: #0d47a1; /* Biru Tua */
             --secondary-color: #1976d2; /* Biru Terang */
@@ -135,7 +134,7 @@
 
     <header>
         <nav>
-            <a href="index.html" class="logo">
+            <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
             </a>
             <ul class="nav-links">

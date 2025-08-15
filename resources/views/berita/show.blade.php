@@ -27,17 +27,89 @@
             background: var(--bg-color);
             color: var(--text-color);
         }
-        /* --- Header --- */
-        .site-header {
-            background: var(--white-color);
-            padding: 10px 5%;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+
+        /* --- Header & Navigation Bar --- */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--light-color);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        nav {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0.8rem 2rem;
         }
-        .site-header .logo { font-weight: 700; font-size: 1.5em; text-decoration: none; color: var(--primary-color); }
-        .site-header .nav-links a { margin-left: 20px; text-decoration: none; color: var(--text-color); font-weight: 500; }
+
+        .logo img {
+            height: 45px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--primary-color);
+            padding: 0.5rem 0;
+            position: relative;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            background-color: var(--secondary-color);
+            bottom: 0;
+            left: 0;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav-links a:hover::after {
+            transform: scaleX(1);
+        }
+
+        .login-button {
+            background-color: var(--primary-color);
+            color: var(--light-color);
+            padding: 0.5rem 1.5rem;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+            margin-left: 1rem;
+        }
+
+        .login-button:hover {
+            background-color: var(--secondary-color);
+            color: var(--light-color);
+        }
+
+        .hamburger {
+            display: none;
+            font-size: 1.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--primary-color);
+        }
 
         /* --- Main Content --- */
         .container {
@@ -80,16 +152,67 @@
         
         /* --- Footer --- */
         .site-footer { text-align: center; padding: 20px; margin-top: 40px; background: #343a40; color: #f8f9fa; font-size: 0.9em; }
+                
+        /* Aturan untuk Mobile */
+        @media (max-width: 768px) {
+            nav {
+                padding: 0.8rem 1.5rem;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 60%;
+                background-color: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(5px);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2.5rem;
+                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .nav-links a {
+            font-size: 1.2rem;
+            }
+            
+            .login-button {
+                display: none;
+            }
+
+            .hamburger {
+                display: block;
+                z-index: 1001;
+            }
+        }
+
     </style>
 </head>
 <body>
 
-    <header class="site-header">
-        <a href="/" class="logo">MI Ngasem Selatan</a>
-        <nav class="nav-links">
-            <a href="/">Home</a>
-            <a href="#">Data Guru</a>
-            <a href="#">Portal Berita</a>
+    <header>
+        <nav>
+            <a href="{{ route('home') }}" class="logo">
+                <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
+            </a>
+            <ul class="nav-links">
+                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
+                <li><a href="{{ route('about.index') }}">About Us</a></li>
+            </ul>
+            
+            <a href="{{ route('login') }}" class="login-button">Login Admin</a>
+
+            <button class="hamburger" aria-label="Toggle Menu">
+                <i class="fas fa-bars"></i>
+            </button>
         </nav>
     </header>
 
