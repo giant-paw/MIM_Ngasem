@@ -140,9 +140,37 @@
                 display: none; /* Sembunyikan sisi gambar di mobile agar fokus ke form */
             }
         }
+
+        .back-to-home-link {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            display: inline-flex; /* Agar berperilaku seperti tombol */
+            align-items: center;
+            gap: 8px;
+            background-color: var(--light-color); /* Latar belakang putih */
+            color: var(--primary-color); /* Teks warna biru utama */
+            padding: 10px 20px; /* Padding agar lebih besar */
+            border-radius: 50px; /* Sudut sangat tumpul (bentuk pil) */
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+            transition: all 0.3s ease;
+            z-index: 2;
+        }
+
+        .back-to-home-link:hover {
+            transform: translateY(-3px); /* Efek terangkat saat disentuh */
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+            color: var(--secondary-color);
+        }
     </style>
 </head>
 <body>
+    <a href="{{ route('home') }}" class="back-to-home-link">
+        <i class="fas fa-arrow-left"></i>
+        <span>Kembali ke Halaman Utama</span>
+    </a>
+
     <div class="login-container">
         <div class="login-branding">
             <img src="{{ asset('images/logomim.png') }}" alt="Logo Sekolah" class="logo">

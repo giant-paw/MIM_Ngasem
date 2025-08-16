@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
@@ -110,7 +112,7 @@
             font-weight: 600;
             transition: background-color 0.2s ease;
         }
-        .btn-logout:hover { background-color: #374151; }
+        .btn-logout:hover { background-color: #a50f0f; }
 
         /* --- CONTENT WRAPPER --- */
         .content-wrapper { flex-grow: 1; display: flex; flex-direction: column; }
@@ -194,10 +196,6 @@
         .btn-delete { background-color: var(--danger-bg); color: var(--danger-text); }
         .btn-delete:hover { background-color: #fecaca; }
 
-        /* --- ALERTS --- */
-        .alert { padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-weight: 500; }
-        .alert-success { background-color: var(--success-bg); color: var(--success-text); }
-        
         /* --- UTILITIES --- */
         .page-actions { margin-bottom: 1.5rem; display: flex; justify-content: flex-end; }
 
@@ -231,12 +229,6 @@
             </header>
             
             <main class="main-content">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="page-actions">
                         <a href="{{ route('admin.berita.create') }}" class="btn btn-primary">
@@ -273,11 +265,13 @@
                                     <td>
                                         <a href="{{ route('berita.show', $item->slug) }}" target="_blank" class="btn btn-action btn-preview">Preview</a>
                                         <a href="{{ route('admin.berita.edit', $item->id) }}" class="btn btn-action btn-edit">Edit</a>
+                                        
                                         <form action="{{ route('admin.berita.destroy', $item->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-action btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus berita ini?')">Hapus</button>
+                                            <button type="submit" class="btn btn-action btn-delete" onclick="confirmDelete(event)">Hapus</button>
                                         </form>
+
                                     </td>
                                 </tr>
                                 @empty
@@ -296,5 +290,38 @@
             </main>
         </div>
     </div>
+
+    <script>
+        // SCRIPT UNTUK ALERT HAPUS DATA
+        function confirmDelete(event) {
+            event.preventDefault(); 
+            
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.closest('form').submit();
+                }
+            });
+        }
+
+        // SCRIPT UNTUK ALERT SETELAH SIMPAN/UPDATE DATA
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        @endif
+    </script>
 </body>
 </html>

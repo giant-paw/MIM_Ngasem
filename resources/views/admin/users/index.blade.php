@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
@@ -106,7 +108,7 @@
             font-weight: 600;
             transition: background-color 0.2s ease;
         }
-        .btn-logout:hover { background-color: #374151; }
+        .btn-logout:hover { background-color: #a50f0f; }
 
         /* --- CONTENT WRAPPER --- */
         .content-wrapper { flex-grow: 1; display: flex; flex-direction: column; }
@@ -176,10 +178,6 @@
 
         .btn-delete { background-color: var(--danger-bg); color: var(--danger-text); }
         .btn-delete:hover { background-color: #fecaca; }
-
-        /* --- ALERTS --- */
-        .alert { padding: 1rem; border-radius: 8px; margin-bottom: 1.5rem; font-weight: 500; }
-        .alert-success { background-color: var(--success-bg); color: var(--success-text); }
         
         /* --- UTILITIES --- */
         .page-actions { margin-bottom: 1.5rem; display: flex; justify-content: flex-end; }
@@ -214,12 +212,6 @@
             </header>
             
             <main class="main-content">
-                @if (session('success'))
-                    <div class="alert alert-success">
-                        {{ session('success') }}
-                    </div>
-                @endif
-
                 <div class="card">
                     <div class="page-actions">
                         <a href="{{ route('admin.users.create') }}" class="btn btn-primary">
@@ -251,7 +243,7 @@
                                             <form action="{{ route('admin.users.destroy', $user->id) }}" method="POST" style="display:inline;">
                                                 @csrf
                                                 @method('DELETE')
-                                                <button type="submit" class="btn btn-action btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus admin ini?')">Hapus</button>
+                                                <button type="submit" class="btn btn-action btn-delete" onclick="confirmDelete(event)">Hapus</button>
                                             </form>
                                         @endif
                                     </td>
@@ -272,5 +264,38 @@
             </main>
         </div>
     </div>
+
+    <script>
+        // SCRIPT UNTUK ALERT HAPUS DATA
+        function confirmDelete(event) {
+            event.preventDefault();
+            
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Akun admin yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.closest('form').submit();
+                }
+            });
+        }
+
+        // SCRIPT UNTUK ALERT SETELAH SIMPAN/UPDATE DATA
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                timer: 2000,
+                showConfirmButton: false
+            });
+        @endif
+    </script>
 </body>
 </html>

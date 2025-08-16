@@ -10,6 +10,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
     <style>
         /* --- CSS VARIABLES & RESET --- */
         :root {
@@ -31,11 +33,7 @@
             --warning-text: #92400e;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -47,9 +45,7 @@
         ul { list-style: none; }
 
         /* --- ADMIN LAYOUT --- */
-        .admin-layout {
-            display: flex;
-        }
+        .admin-layout { display: flex; }
 
         /* --- SIDEBAR --- */
         .sidebar {
@@ -61,7 +57,6 @@
             flex-direction: column;
             transition: width 0.3s ease;
         }
-
         .sidebar-header {
             padding: 1.5rem;
             text-align: center;
@@ -70,12 +65,7 @@
             color: var(--card-bg);
             border-bottom: 1px solid var(--secondary-color);
         }
-
-        .sidebar-nav {
-            flex-grow: 1;
-            padding: 1rem;
-        }
-
+        .sidebar-nav { flex-grow: 1; padding: 1rem; }
         .sidebar-nav a {
             display: flex;
             align-items: center;
@@ -87,22 +77,12 @@
             font-weight: 500;
             transition: background-color 0.2s ease, color 0.2s ease;
         }
-
-        .sidebar-nav a .icon {
-            font-size: 1.1rem;
-            width: 20px;
-            text-align: center;
-        }
-
+        .sidebar-nav a .icon { font-size: 1.1rem; width: 20px; text-align: center; }
         .sidebar-nav a:hover, .sidebar-nav a.active {
             background-color: var(--primary-color);
             color: var(--card-bg);
         }
-
-        .sidebar-footer {
-            padding: 1.5rem;
-        }
-
+        .sidebar-footer { padding: 1.5rem; }
         .btn-logout {
             width: 100%;
             padding: 12px;
@@ -115,16 +95,10 @@
             font-weight: 600;
             transition: background-color 0.2s ease;
         }
-        .btn-logout:hover {
-            background-color: #374151;
-        }
+        .btn-logout:hover { background-color: #a50f0f; }
 
         /* --- CONTENT WRAPPER --- */
-        .content-wrapper {
-            flex-grow: 1;
-            display: flex;
-            flex-direction: column;
-        }
+        .content-wrapper { flex-grow: 1; display: flex; flex-direction: column; }
         
         /* --- MAIN HEADER --- */
         .main-header {
@@ -135,18 +109,10 @@
             justify-content: space-between;
             align-items: center;
         }
-        
-        .main-header h1 {
-            font-size: 1.75rem;
-            font-weight: 600;
-            color: var(--secondary-color);
-        }
+        .main-header h1 { font-size: 1.75rem; font-weight: 600; color: var(--secondary-color); }
 
         /* --- MAIN CONTENT --- */
-        .main-content {
-            padding: 2.5rem;
-            flex-grow: 1;
-        }
+        .main-content { padding: 2.5rem; flex-grow: 1; }
 
         /* --- CARD STYLE --- */
         .card {
@@ -157,18 +123,9 @@
         }
 
         /* --- TABLE STYLE --- */
-        .table-wrapper {
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        th, td {
-            padding: 12px 15px;
-            text-align: left;
-            vertical-align: middle;
-        }
+        .table-wrapper { overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 12px 15px; text-align: left; vertical-align: middle; }
         thead th {
             background-color: #f3f4f6;
             font-weight: 600;
@@ -176,23 +133,10 @@
             font-size: 0.875rem;
             text-transform: uppercase;
         }
-        tbody tr {
-            border-bottom: 1px solid var(--border-color);
-        }
-        tbody tr:last-child {
-            border-bottom: none;
-        }
-        tbody tr:hover {
-            background-color: #f9fafb;
-        }
-
-        /* GAYA FOTO GURU YANG DIUBAH */
-        .teacher-photo {
-            width: 80px;  /* Sedikit lebih besar agar lebih jelas */
-            height: 80px;
-            object-fit: cover;
-            border-radius: 8px; /* Diubah dari 50% menjadi 8px */
-        }
+        tbody tr { border-bottom: 1px solid var(--border-color); }
+        tbody tr:last-child { border-bottom: none; }
+        tbody tr:hover { background-color: #f9fafb; }
+        .teacher-photo { width: 80px; height: 80px; object-fit: cover; border-radius: 8px; }
 
         /* --- BUTTONS --- */
         .btn {
@@ -205,48 +149,17 @@
             border: none;
             transition: background-color 0.2s ease, transform 0.1s ease;
         }
-        .btn:active {
-            transform: scale(0.98);
-        }
-
-        .btn-primary {
-            background-color: var(--primary-color);
-            color: white;
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-        }
-        
-        .btn-action {
-            padding: 6px 12px;
-            font-size: 0.875rem;
-            margin-right: 6px;
-        }
-        
+        .btn:active { transform: scale(0.98); }
+        .btn-primary { background-color: var(--primary-color); color: white; }
+        .btn-primary:hover { background-color: var(--primary-hover); }
+        .btn-action { padding: 6px 12px; font-size: 0.875rem; margin-right: 6px; }
         .btn-edit { background-color: var(--warning-bg); color: var(--warning-text); }
         .btn-edit:hover { background-color: #fde68a; }
-
         .btn-delete { background-color: var(--danger-bg); color: var(--danger-text); }
         .btn-delete:hover { background-color: #fecaca; }
-
-        /* --- ALERTS --- */
-        .alert {
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            font-weight: 500;
-        }
-        .alert-success {
-            background-color: var(--success-bg);
-            color: var(--success-text);
-        }
         
         /* --- UTILITIES --- */
-        .page-actions {
-            margin-bottom: 1.5rem;
-            display: flex;
-            justify-content: flex-end;
-        }
+        .page-actions { margin-bottom: 1.5rem; display: flex; justify-content: flex-end; }
     </style>
 </head>
 
@@ -274,14 +187,15 @@
         <div class="content-wrapper">
             <header class="main-header">
                 <h1>Kelola Data Guru</h1>
-                </header>
+            </header>
             
             <main class="main-content">
-                @if (session('success'))
+                {{-- Notifikasi standar tidak lagi diperlukan, bisa dihapus --}}
+                {{-- @if (session('success'))
                     <div class="alert alert-success">
                         {{ session('success') }}
                     </div>
-                @endif
+                @endif --}}
 
                 <div class="card">
                     <div class="page-actions">
@@ -319,7 +233,7 @@
                                         <form action="{{ route('admin.guru.destroy', $guru->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
-                                            <button type="submit" class="btn btn-action btn-delete" onclick="return confirm('Apakah Anda yakin ingin menghapus data ini?')">Hapus</button>
+                                            <button type="submit" class="btn btn-action btn-delete" onclick="confirmDelete(event)">Hapus</button>
                                         </form>
                                     </td>
                                 </tr>
@@ -333,12 +247,45 @@
                     </div>
 
                     <div style="margin-top: 20px;">
-                        {{-- Laravel's default pagination can be styled further if needed --}}
                         {{ $dataGuru->links() }}
                     </div>
                 </div>
             </main>
         </div>
     </div>
+    
+    <script>
+        // SCRIPT UNTUK ALERT HAPUS DATA
+        function confirmDelete(event) {
+            event.preventDefault(); 
+            
+            Swal.fire({
+                title: 'Apakah Anda yakin?',
+                text: "Data yang dihapus tidak dapat dikembalikan!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Ya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    event.target.closest('form').submit();
+                }
+            });
+        }
+
+        // BARU: SCRIPT UNTUK ALERT SETELAH SIMPAN DATA
+        // Mengecek apakah ada session flash 'success' dari controller
+        @if(session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}', // Mengambil pesan dari session
+                timer: 2000, // Alert akan hilang setelah 2 detik
+                showConfirmButton: false
+            });
+        @endif
+    </script>
 </body>
 </html>
