@@ -136,6 +136,59 @@
         .nav-links a.active::after {
             transform: scaleX(1);
         }
+        
+        /* --- START: CSS BARU UNTUK DROPDOWN --- */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none; /* Sembunyikan secara default */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 200px;
+            z-index: 1001;
+            padding: 0.5rem 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Tampilkan saat hover di desktop */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            font-weight: 400; /* Font lebih tipis dari menu utama */
+        }
+        
+        .dropdown-menu a::after {
+             display: none; /* Hilangkan garis bawah dari menu utama */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: var(--secondary-color);
+        }
+        
+        .dropdown > a i {
+            margin-left: 0.3rem;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown:hover > a i {
+             transform: rotate(180deg);
+        }
+        /* --- END: CSS BARU UNTUK DROPDOWN --- */
 
         .login-button {
             background-color: var(--primary-color);
@@ -204,7 +257,7 @@
             gap: 0.5rem;
         }
 
-        .vision-mission .card p {
+        .vision-mission .card p, .vision-mission .card ul {
             color: var(--dark-color);
         }
 
@@ -348,6 +401,32 @@
             .social-links {
                 justify-content: center;
             }
+            
+            /* --- START: CSS DROPDOWN UNTUK MOBILE --- */
+            .dropdown:hover .dropdown-menu {
+                display: none; /* Matikan hover di mobile */
+            }
+
+            .dropdown-menu.show {
+                display: block; /* Tampilkan dengan class .show dari JS */
+                opacity: 1;
+            }
+            
+            .dropdown-menu {
+                position: static; /* Hapus positioning absolut */
+                box-shadow: none;
+                background-color: transparent;
+                padding-left: 1.5rem; /* Beri indentasi agar terlihat seperti submenu */
+                width: 100%;
+                text-align: center;
+                transform: none; /* Reset transform */
+                transition: none; /* Hapus transisi hover */
+            }
+
+            .dropdown-menu a {
+                padding: 0.5rem 1rem;
+            }
+            /* --- END: CSS DROPDOWN UNTUK MOBILE --- */
         }
     </style>
 </head>
@@ -359,12 +438,25 @@
             <a href="/" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem">
             </a>
+            
             <ul class="nav-links">
-                <li><a href="/">Home</a></li>
+                <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                
+                <li class="dropdown">
+                    <a href="#">Ekstrakurikuler <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('tahfidz.index') }}">Tahfidz</a></li>
+                        <li><a href="{{ route('tari.index') }}">Tari</a></li>
+                        <li><a href="{{ route('band.index') }}">Drum Band</a></li>
+                        <li><a href="{{ route('voli.index') }}">Voli</a></li>
+                        <li><a href="{{ route('hizbul.index') }}">Hizbul Wathan</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
-                <li><a href="{{ route('about.index') }}" class="active">About Us</a></li>
+                <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
+
             <a href="{{ route('login') }}" class="login-button">Login Admin</a>
             <button class="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
         </nav>
@@ -451,6 +543,19 @@
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
+
+        // --- START: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
+        const dropdown = document.querySelector('.dropdown > a');
+
+        dropdown.addEventListener('click', (e) => {
+            // Cek jika tampilan mobile (hamburger terlihat)
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // Mencegah link berpindah halaman
+                const dropdownMenu = dropdown.nextElementSibling;
+                dropdownMenu.classList.toggle('show');
+            }
+        });
+        // --- END: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
     </script>
 
 </body>

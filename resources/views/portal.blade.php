@@ -32,6 +32,60 @@
         .nav-links a::after { content: ''; position: absolute; width: 100%; height: 2px; background-color: var(--secondary-color); bottom: 0; left: 0; transform: scaleX(0); transition: transform 0.3s ease-in-out; }
         .nav-links a:hover, .nav-links a.active { color: var(--secondary-color); }
         .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+        
+        /* --- START: CSS BARU UNTUK DROPDOWN --- */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none; /* Sembunyikan secara default */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 200px;
+            z-index: 1001;
+            padding: 0.5rem 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Tampilkan saat hover di desktop */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            font-weight: 400; /* Font lebih tipis dari menu utama */
+        }
+        
+        .dropdown-menu a::after {
+             display: none; /* Hilangkan garis bawah dari menu utama */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: var(--secondary-color);
+        }
+        
+        .dropdown > a i {
+            margin-left: 0.3rem;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown:hover > a i {
+             transform: rotate(180deg);
+        }
+        /* --- END: CSS BARU UNTUK DROPDOWN --- */
+        
         .login-button { background-color: var(--primary-color); color: var(--light-color); padding: 0.5rem 1.5rem; border-radius: 20px; font-weight: 600; transition: background-color 0.3s ease; margin-left: 1rem; }
         .login-button:hover { background-color: var(--secondary-color); }
         .hamburger { display: none; font-size: 1.5rem; background: none; border: none; cursor: pointer; color: var(--primary-color); }
@@ -55,124 +109,100 @@
         .pagination li a, .pagination li span { display: block; padding: 8px 15px; border: 1px solid #ddd; background: white; border-radius: 5px; }
         .pagination li.active span { background-color: var(--primary-color); color: white; border-color: var(--primary-color); }
         .pagination li.disabled span { background-color: #f0f0f0; color: #aaa; }
+        
+        /* Footer */
         footer {
-             background-color: #1a1a1a; /* Sedikit lebih lembut dari #111 */
-             color: var(--light-color);
-             padding: 2.5rem 0; /* Sedikit padding vertikal */
-         }
+            background-color: #1a1a1a;
+            color: var(--light-color);
+            padding: 2.5rem 0;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+        }
+        .footer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+        .footer-logo {
+            height: 80px;
+        }
+        .footer-school-name {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f0f0f0;
+        }
+        .social-links {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 1.2rem;
+        }
+        .social-links a {
+            color: #ccc;
+            transition: color 0.3s ease, transform 0.3s ease;
+        }
+        .social-links a:hover {
+            color: var(--light-color);
+            transform: translateY(-3px);
+        }
+        .social-links i {
+            font-size: 1.6rem;
+        }
+        .footer-bottom {
+            text-align: center;
+            border-top: 1px solid #444;
+            padding-top: 1.5rem;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
 
-         /* BARU: Kontainer utama untuk layout flex */
-         .footer-content {
-             display: flex;
-             justify-content: space-between; /* Mendorong item ke ujung kiri dan kanan */
-             align-items: center; /* Menjaga semua item sejajar di tengah secara vertikal */
-             margin-bottom: 2rem; /* Jarak ke teks copyright */
-             flex-wrap: wrap; /* Agar responsif di layar kecil */
-             gap: 1.5rem; /* Jarak jika wrapping terjadi */
-         }
+        @media (max-width: 768px) {
+            nav { padding: 0.8rem 1.5rem; }
+            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 60%; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            .login-button { display: none; }
+            .hamburger { display: block; z-index: 1001; }
+            .section-title { font-size: 2rem; }
+            .footer-school-name { font-size: 1.2rem; } /* Ukuran font di mobile */
+            
+            /* Penyesuaian Footer untuk Mobile */
+            .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
+            .footer-info { flex-direction: column; gap: 0.8rem; }
+            .social-links { justify-content: center; }
+            
+            /* --- START: CSS DROPDOWN UNTUK MOBILE --- */
+            .dropdown:hover .dropdown-menu {
+                display: none; /* Matikan hover di mobile */
+            }
 
-         /* BARU: Grup untuk logo dan nama sekolah */
-         .footer-info {
-             display: flex;
-             align-items: center;
-             gap: 1rem; /* Jarak antara logo dan teks */
-         }
+            .dropdown-menu.show {
+                display: block; /* Tampilkan dengan class .show dari JS */
+                opacity: 1;
+            }
+            
+            .dropdown-menu {
+                position: static; /* Hapus positioning absolut */
+                box-shadow: none;
+                background-color: transparent;
+                padding-left: 1.5rem; /* Beri indentasi agar terlihat seperti submenu */
+                width: 100%;
+                text-align: center;
+                transform: none; /* Reset transform */
+                transition: none; /* Hapus transisi hover */
+            }
 
-         /* BARU: Aturan khusus untuk logo di footer */
-         .footer-logo {
-             height: 80px;
-         }
-
-         /* BARU: Aturan untuk nama sekolah */
-         .footer-school-name {
-             font-size: 2rem; /* Ukuran font sedikit lebih besar */
-             font-weight: 600;
-             color: #f0f0f0;
-         }
-
-         /* MODIFIKASI: Mengubah social-links menjadi baris */
-         .social-links {
-             display: flex;
-             flex-direction: row; /* Kunci utama: mengubah dari column ke row */
-             align-items: center;
-             gap: 1.2rem; /* Jarak antar ikon */
-         }
-
-         .social-links a {
-             color: #ccc;
-             transition: color 0.3s ease, transform 0.3s ease;
-         }
-
-         .social-links a:hover {
-             color: var(--light-color); /* Warna saat hover */
-             transform: translateY(-3px); /* Efek sedikit terangkat */
-         }
-
-         .social-links i {
-             font-size: 1.6rem; /* Ukuran ikon diperbesar sedikit */
-         }
-
-         .footer-bottom {
-             text-align: center;
-             border-top: 1px solid #444; /* Garis pemisah yang lebih soft */
-             padding-top: 1.5rem;
-             font-size: 0.9rem;
-             color: #aaa;
-         }
-
-         @media (max-width: 768px) {
-    nav { 
-        padding: 0.8rem 1.5rem; 
-    }
-    .nav-links {
-        position: fixed;
-        top: 0;
-        right: -100%;
-        height: 100vh;
-        width: 60%;
-        background-color: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(5px);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 2.5rem;
-        transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-    }
-    .nav-links.active { 
-        right: 0; 
-    }
-    .nav-links a { 
-        font-size: 1.2rem; 
-    }
-    .login-button { 
-        display: none; 
-    }
-    .hamburger { 
-        display: block; 
-        z-index: 1001; 
-    }
-    .section-title { 
-        font-size: 2rem; 
-    }
-
-    /* Penyesuaian Footer untuk Mobile */
-    .footer-content {
-        flex-direction: column;   /* Ubah layout menjadi vertikal */
-        justify-content: center;  /* Pusatkan item secara vertikal */
-        text-align: center;       /* Buat teks di dalamnya rata tengah */
-        gap: 2.5rem;              /* Beri jarak lebih besar antar elemen */
-    }
-    .footer-info {
-        flex-direction: column; /* Buat logo dan nama sekolah juga vertikal */
-        gap: 0.8rem;
-    }
-    .footer-school-name {
-        font-size: 1.5rem; /* Perkecil sedikit font nama sekolah di mobile */
-    }
-    .social-links {
-        justify-content: center; /* Pastikan ikon sosmed juga di tengah */
-    }
-}
+            .dropdown-menu a {
+                padding: 0.5rem 1rem;
+            }
+            /* --- END: CSS DROPDOWN UNTUK MOBILE --- */
+        }
     </style>
 </head>
 <body>
@@ -181,12 +211,25 @@
             <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM">
             </a>
+            
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                
+                <li class="dropdown">
+                    <a href="#">Ekstrakurikuler <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('tahfidz.index') }}">Tahfidz</a></li>
+                        <li><a href="{{ route('tari.index') }}">Tari</a></li>
+                        <li><a href="{{ route('band.index') }}">Drum Band</a></li>
+                        <li><a href="{{ route('voli.index') }}">Voli</a></li>
+                        <li><a href="{{ route('hizbul.index') }}">Hizbul Wathan</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
                 <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
+
             <a href="{{ route('login') }}" class="login-button">Login Admin</a>
             <button class="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
         </nav>
@@ -228,21 +271,21 @@
     </main>
     <footer>
          <div class="container">
-             <div class="footer-content">
-                 <div class="footer-info">
-                     <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem" class="footer-logo">
-                     <p class="footer-school-name">MI Muhammadiyah Ngasem Selatan</p>
-                 </div>
-                 <div class="social-links">
-                     <a href="https://www.instagram.com/mim.ngasem" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                     <a href="https://www.tiktok.com/@mi_muhammadiyah_ngasem" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                     <a href="https://www.facebook.com/mimuhammadiyahngasem" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                     <a href="mailto:mimuhngasem@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                 </div>
-             </div>
-             <div class="footer-bottom">
-                 <p>&copy; 2025 KKN REG UMY 114. All Rights Reserved.</p>
-             </div>
+              <div class="footer-content">
+                   <div class="footer-info">
+                        <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem" class="footer-logo">
+                        <p class="footer-school-name">MI Muhammadiyah Ngasem Selatan</p>
+                   </div>
+                   <div class="social-links">
+                        <a href="https://www.instagram.com/mim.ngasem" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.tiktok.com/@mi_muhammadiyah_ngasem" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                        <a href="https://www.facebook.com/mimuhammadiyahngasem" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                        <a href="mailto:mimuhngasem@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                   </div>
+              </div>
+              <div class="footer-bottom">
+                   <p>&copy; 2025 KKN REG UMY 114. All Rights Reserved.</p>
+              </div>
          </div>
      </footer>
 
@@ -251,8 +294,21 @@
          const hamburger = document.querySelector('.hamburger');
          const navLinks = document.querySelector('.nav-links');
          hamburger.addEventListener('click', () => {
-             navLinks.classList.toggle('active');
+              navLinks.classList.toggle('active');
          });
+         
+        // --- START: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
+        const dropdown = document.querySelector('.dropdown > a');
+
+        dropdown.addEventListener('click', (e) => {
+            // Cek jika tampilan mobile (hamburger terlihat)
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // Mencegah link berpindah halaman
+                const dropdownMenu = dropdown.nextElementSibling;
+                dropdownMenu.classList.toggle('show');
+            }
+        });
+        // --- END: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
      </script>
 </body>
 </html>

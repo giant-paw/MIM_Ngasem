@@ -68,6 +68,60 @@
         }
         .nav-links a:hover, .nav-links a.active { color: var(--secondary-color); }
         .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+        
+        /* --- START: CSS BARU UNTUK DROPDOWN --- */
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-menu {
+            display: none; /* Sembunyikan secara default */
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: var(--light-color);
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            min-width: 200px;
+            z-index: 1001;
+            padding: 0.5rem 0;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        .dropdown:hover .dropdown-menu {
+            display: block; /* Tampilkan saat hover di desktop */
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .dropdown-menu a {
+            display: block;
+            padding: 0.7rem 1.2rem;
+            font-weight: 400; /* Font lebih tipis dari menu utama */
+        }
+        
+        .dropdown-menu a::after {
+             display: none; /* Hilangkan garis bawah dari menu utama */
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #f5f5f5;
+            color: var(--secondary-color);
+        }
+        
+        .dropdown > a i {
+            margin-left: 0.3rem;
+            font-size: 0.8em;
+            transition: transform 0.3s ease;
+        }
+        
+        .dropdown:hover > a i {
+             transform: rotate(180deg);
+        }
+        /* --- END: CSS BARU UNTUK DROPDOWN --- */
+        
         .login-button {
             background-color: var(--primary-color);
             color: var(--light-color);
@@ -99,34 +153,60 @@
         .teacher-info h3 { font-size: 1.2rem; margin-bottom: 0.25rem; }
         .teacher-info p { color: #666; }
 
-        /* --- FOOTER  --- */
-         footer { background-color: #1a1a1a; color: var(--light-color); padding: 2.5rem 0; }
-         .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; }
-         .footer-info { display: flex; align-items: center; gap: 1rem; }
-         .footer-logo { height: 80px; }
-         .footer-school-name { font-size: 1.5rem; font-weight: 600; color: #f0f0f0; }
-         .social-links { display: flex; flex-direction: row; align-items: center; gap: 1.2rem; }
-         .social-links a { color: #ccc; transition: color 0.3s ease, transform 0.3s ease; }
-         .social-links a:hover { color: var(--light-color); transform: translateY(-3px); }
-         .social-links i { font-size: 1.6rem; }
-         .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
+        /* --- FOOTER --- */
+          footer { background-color: #1a1a1a; color: var(--light-color); padding: 2.5rem 0; }
+          .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; }
+          .footer-info { display: flex; align-items: center; gap: 1rem; }
+          .footer-logo { height: 80px; }
+          .footer-school-name { font-size: 1.5rem; font-weight: 600; color: #f0f0f0; }
+          .social-links { display: flex; flex-direction: row; align-items: center; gap: 1.2rem; }
+          .social-links a { color: #ccc; transition: color 0.3s ease, transform 0.3s ease; }
+          .social-links a:hover { color: var(--light-color); transform: translateY(-3px); }
+          .social-links i { font-size: 1.6rem; }
+          .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
 
-         /* --- Media Queries untuk Responsif --- */
-         @media (max-width: 768px) {
-             nav { padding: 0.8rem 1.5rem; }
-             .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 60%; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
-             .nav-links.active { right: 0; }
-             .nav-links a { font-size: 1.2rem; }
-             .login-button { display: none; }
-             .hamburger { display: block; z-index: 1001; }
-             .section-title { font-size: 2rem; }
-             
-             /* Penyesuaian Footer untuk Mobile */
-             .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
-             .footer-info { flex-direction: column; gap: 0.8rem; }
-             .footer-school-name { font-size: 1.2rem; }
-             .social-links { justify-content: center; }
-         }
+          /* --- Media Queries untuk Responsif --- */
+          @media (max-width: 768px) {
+              nav { padding: 0.8rem 1.5rem; }
+              .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 60%; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+              .nav-links.active { right: 0; }
+              .nav-links a { font-size: 1.2rem; }
+              .login-button { display: none; }
+              .hamburger { display: block; z-index: 1001; }
+              .section-title { font-size: 2rem; }
+              
+              /* Penyesuaian Footer untuk Mobile */
+              .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
+              .footer-info { flex-direction: column; gap: 0.8rem; }
+              .footer-school-name { font-size: 1.2rem; }
+              .social-links { justify-content: center; }
+              
+            /* --- START: CSS DROPDOWN UNTUK MOBILE --- */
+            .dropdown:hover .dropdown-menu {
+                display: none; /* Matikan hover di mobile */
+            }
+
+            .dropdown-menu.show {
+                display: block; /* Tampilkan dengan class .show dari JS */
+                opacity: 1;
+            }
+            
+            .dropdown-menu {
+                position: static; /* Hapus positioning absolut */
+                box-shadow: none;
+                background-color: transparent;
+                padding-left: 1.5rem; /* Beri indentasi agar terlihat seperti submenu */
+                width: 100%;
+                text-align: center;
+                transform: none; /* Reset transform */
+                transition: none; /* Hapus transisi hover */
+            }
+
+            .dropdown-menu a {
+                padding: 0.5rem 1rem;
+            }
+            /* --- END: CSS DROPDOWN UNTUK MOBILE --- */
+          }
         
     </style>
 </head>
@@ -137,12 +217,25 @@
             <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
             </a>
+            
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('dataguru.index') }}" class="active">Data Guru</a></li>
+                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                
+                <li class="dropdown">
+                    <a href="#">Ekstrakurikuler <i class="fas fa-caret-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ route('tahfidz.index') }}">Tahfidz</a></li>
+                        <li><a href="{{ route('tari.index') }}">Tari</a></li>
+                        <li><a href="{{ route('band.index') }}">Drum Band</a></li>
+                        <li><a href="{{ route('voli.index') }}">Voli</a></li>
+                        <li><a href="{{ route('hizbul.index') }}">Hizbul Wathan</a></li>
+                    </ul>
+                </li>
                 <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
-                <li><a href="#">About Us</a></li>
+                <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
+            
             <a href="{{ route('login') }}" class="login-button">Login Admin</a>
             <button class="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
         </nav>
@@ -220,6 +313,19 @@
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
+        
+        // --- START: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
+        const dropdown = document.querySelector('.dropdown > a');
+
+        dropdown.addEventListener('click', (e) => {
+            // Cek jika tampilan mobile (hamburger terlihat)
+            if (window.innerWidth <= 768) {
+                e.preventDefault(); // Mencegah link berpindah halaman
+                const dropdownMenu = dropdown.nextElementSibling;
+                dropdownMenu.classList.toggle('show');
+            }
+        });
+        // --- END: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
     </script>
 
 </body>

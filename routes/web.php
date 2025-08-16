@@ -6,6 +6,8 @@ use App\Http\Controllers\Admin\GuruController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\BeritaController;
 use App\Http\Controllers\PublicController;
+use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\KategoriController;
 
 Route::get('/', function () {
     return view('home');
@@ -26,13 +28,45 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         'berita' => 'berita'
     ]);
 
+    Route::resource('users', UserController::class);
+
+    Route::resource('kategori', KategoriController::class);
 
     Route::post('/berita/upload-trix', [BeritaController::class, 'uploadTrixImage'])->name('berita.upload-trix');
 });
 
+// USER 
+
+// Halaman Berita
 Route::get('/berita/{berita:slug}', [BeritaController::class, 'show'])->name('berita.show');
 
+// Halaman Berita
 Route::get('/portal-berita', [PublicController::class, 'portalBerita'])->name('portal.index');
+
+// Halaman Tahfidz
+Route::get('/tahfidz', function () {
+    return view('tahfidz');
+})->name('tahfidz.index');
+
+// Halaman Tari
+Route::get('/tari', function () {
+    return view('tari');
+})->name('tari.index');
+
+// Halaman Hizbul Wathan
+Route::get('/hizbul', function () {
+    return view('hizbul');
+})->name('hizbul.index');
+
+// Halaman Drum Band
+Route::get('/band', function () {
+    return view('band');
+})->name('band.index');
+
+// Halaman VOLI
+Route::get('/voli', function () {
+    return view('voli');
+})->name('voli.index');
 
 // Route::get('/data-guru', function () {
 //     return view('dataguru');
