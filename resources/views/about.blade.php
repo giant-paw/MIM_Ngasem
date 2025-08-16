@@ -428,6 +428,35 @@
             }
             /* --- END: CSS DROPDOWN UNTUK MOBILE --- */
         }
+
+        .whatsapp-fab {
+                position: fixed;
+                bottom: 30px;
+                right: 30px;
+                background-color: #25d366;
+                color: white;
+                border-radius: 35px; /* Membuat sudut menjadi pil */
+                display: flex;
+                align-items: center;
+                padding: 10px 20px;
+                text-decoration: none;
+                font-family: 'Poppins', sans-serif;
+                font-weight: 600;
+                font-size: 1rem;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+                z-index: 1000;
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            .whatsapp-fab:hover {
+                transform: translateY(-5px); /* Sedikit terangkat saat disentuh */
+                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            }
+
+            .whatsapp-fab i {
+                font-size: 2.2rem; /* Ukuran ikon diperbesar */
+                margin-right: 10px; /* Jarak antara ikon dan teks */
+            }
     </style>
 </head>
 
@@ -562,13 +591,13 @@
     </script>
 
     <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
-       class="whatsapp-fab" 
-       target="_blank" 
-       aria-label="Hubungi Kami via WhatsApp">
-        <i class="fab fa-whatsapp"></i>
-        <span>Hubungi Kami</span>
+        class="whatsapp-fab" 
+        target="_blank" 
+        aria-label="Hubungi Kami via WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>Hubungi Kami</span>
     </a>
-    
+
 </body>
 
 </html>

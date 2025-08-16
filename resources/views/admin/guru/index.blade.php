@@ -26,6 +26,7 @@
             --success-text: #065f46;
             --danger-bg: #fee2e2;
             --danger-text: #991b1b;
+            --logout-button : #cf0505ff;
             --warning-bg: #fef3c7;
             --warning-text: #92400e;
         }
@@ -105,8 +106,8 @@
         .btn-logout {
             width: 100%;
             padding: 12px;
-            background-color: var(--secondary-color);
-            color: var(--card-bg);
+            background-color: var(--logout-button);
+            color: #ffffffff;
             border: none;
             border-radius: 8px;
             cursor: pointer;
