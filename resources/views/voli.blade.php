@@ -123,22 +123,28 @@
             <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM">
             </a>
+            
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                
+                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
+                
                 <li class="dropdown">
                     <a href="#">Ekstrakurikuler <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-menu">
-                        <li><a href="#">Pramuka</a></li>
-                        <li><a href="#">Tapak Suci</a></li>
-                        <li><a href="#">Hizbul Wathan</a></li>
-                        <li><a href="#">Drum Band</a></li>
-                        <li><a href="#">Seni Baca Al-Qur'an</a></li>
+                        <li><a href="{{ route('tahfidz.index') }}">Tahfidz</a></li>
+                        <li><a href="{{ route('tari.index') }}">Tari</a></li>
+                        <li><a href="{{ route('band.index') }}">Drum Band</a></li>
+                        <li><a href="{{ route('voli.index') }}">Voli</a></li>
+                        <li><a href="{{ route('hizbul.index') }}">Hizbul Wathan</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
+                
+                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                
                 <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
+            
             <a href="{{ route('login') }}" class="login-button">Login Admin</a>
             <button class="hamburger" aria-label="Toggle Menu"><i class="fas fa-bars"></i></button>
         </nav>
@@ -243,5 +249,13 @@
             }
         });
      </script>
+
+     <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
+       class="whatsapp-fab" 
+       target="_blank" 
+       aria-label="Hubungi Kami via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Hubungi Kami</span>
+    </a>
 </body>
 </html>

@@ -26,13 +26,15 @@
     <div class="admin-layout">
         <aside class="sidebar">
             <h2>Admin Panel</h2>
+            
             <ul>
                 <li><a href="{{ route('admin.dashboard') }}">Dashboard</a></li>
                 <li><a href="{{ route('admin.guru.index') }}">Kelola Guru</a></li>
                 <li><a href="{{ route('admin.berita.index') }}">Kelola Berita</a></li>
-                <li><a href="{{ route('admin.kategori.index') }}">Kelola Kategori</a></li>
-                <li><a href="{{ route('admin.users.index') }}" class="active">Kelola Admin</a></li>
+                <li><a href="{{ route('admin.kategori.index') }}">Kelola Kategori</a></li> 
+                <li><a href="{{ route('admin.users.index') }}">Kelola Admin</a></li>   
             </ul>
+            
             <form class="logout-form" method="POST" action="{{ route('logout') }}" style="margin-top: 40px;">
                 @csrf
                 <button type="submit" style="width: 100%; padding: 10px; background-color: #e74c3c; color: white; border: none; border-radius: 5px; cursor: pointer;">Logout</button>

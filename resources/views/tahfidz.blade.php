@@ -132,7 +132,8 @@
             
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                
+                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
                 
                 <li class="dropdown">
                     <a href="#">Ekstrakurikuler <i class="fas fa-caret-down"></i></a>
@@ -144,7 +145,9 @@
                         <li><a href="{{ route('hizbul.index') }}">Hizbul Wathan</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
+                
+                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
+                
                 <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
             
@@ -246,5 +249,13 @@
             }
         });
      </script>
+
+     <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
+       class="whatsapp-fab" 
+       target="_blank" 
+       aria-label="Hubungi Kami via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Hubungi Kami</span>
+    </a>
 </body>
 </html>
