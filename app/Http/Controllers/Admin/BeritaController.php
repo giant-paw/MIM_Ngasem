@@ -132,15 +132,26 @@ class BeritaController extends Controller
 
     public function destroy(Berita $berita)
     {
-        // Hapus gambar utama dari storage jika ada
+        // 1. Hapus gambar utama dari storage jika ada
         if ($berita->gambar_utama) {
             Storage::delete($berita->gambar_utama);
         }
 
-        // Hapus data dari database
+            // 2. (Advanced) Hapus semua gambar sisipan dari Trix Editor di dalam konten
+            // Regex untuk menemukan semua URL gambar yang diupload dari Trix
+        preg_match_all('/<img src="[^"]*\/storage\/berita_konten\/([^"]+)"[^>]*>/', $berita->konten, $matches);
+
+        if (!empty($matches[1])) {
+            foreach ($matches[1] as $filename) {
+                // Hapus setiap file gambar yang ditemukan di dalam konten
+                Storage::delete('public/berita_konten/' . $filename);
+            }
+        }
+
+        // 3. Hapus data dari database
         $berita->delete();
 
-        // Redirect dengan pesan sukses
-        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus.');
+        // 4. Redirect dengan pesan sukses
+        return redirect()->route('admin.berita.index')->with('success', 'Berita berhasil dihapus beserta semua gambarnya.');
     }
 }

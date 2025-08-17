@@ -183,29 +183,33 @@
         </div>
     </div>
 
-    {{-- Script untuk upload gambar di Trix Editor --}}
-    <script>
-        document.addEventListener('trix-attachment-add', function(event) {
-            let attachment = event.attachment;
-            if (attachment.file) {
-                let formData = new FormData();
-                formData.append('file', attachment.file);
-                formData.append('_token', '{{ csrf_token() }}');
+    @push('scripts')
+        {{-- Script untuk upload gambar di Trix Editor --}}
+        <script>
+            document.addEventListener('trix-attachment-add', function(event) {
+                let attachment = event.attachment;
+                if (attachment.file) {
+                    let formData = new FormData();
+                    formData.append('file', attachment.file);
+                    formData.append('_token', '{{ csrf_token() }}');
 
-                fetch('{{ route("admin.berita.upload-trix") }}', {
-                    method: 'POST',
-                    body: formData
-                }).then(response => response.json())
-                .then(data => {
-                    attachment.setAttributes({
-                        url: data.url,
-                        href: data.url
+                    fetch('{{ route("admin.berita.upload-trix") }}', {
+                        method: 'POST',
+                        body: formData
+                    }).then(response => response.json())
+                    .then(data => {
+                        // Beritahu Trix URL gambar yang sudah diupload
+                        // Ini akan otomatis mengganti preview 'filename + size' dengan gambar asli
+                        attachment.setAttributes({
+                            url: data.url,
+                            href: data.url
+                        });
+                    }).catch(error => {
+                        console.error('Upload error:', error);
                     });
-                }).catch(error => {
-                    console.error('Upload error:', error);
-                });
-            }
-        });
-    </script>
+                }
+            });
+        </script>
+    @endpush
 </body>
 </html>

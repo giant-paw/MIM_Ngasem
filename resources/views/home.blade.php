@@ -207,7 +207,7 @@
             border-radius: 2px;
         }
 
-        /* --- Hero Section --- */
+        /* --- Hero Section (BAGIAN YANG DIMODIFIKASI) --- */
         .hero {
             display: flex;
             align-items: center;
@@ -216,7 +216,8 @@
             color: var(--light-color);
             text-align: center;
             position: relative;
-            background: url('https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=2070&auto=format&fit=crop') no-repeat center center/cover;
+            /* PERUBAHAN 1: Ganti URL gambar dengan path lokal Anda */
+            background: url("{{ asset('images/anakbelajar.jpg') }}") no-repeat center center/cover;
         }
 
         .hero::before {
@@ -226,9 +227,13 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(13, 71, 161, 0.8), rgba(25, 118, 210, 0.7));
+            background: linear-gradient(45deg, rgba(13, 71, 161, 0.7), rgba(25, 118, 210, 0.6));
+            /* PERUBAHAN 2: Tambahkan filter blur pada overlay */
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px); /* Untuk support Safari */
             z-index: 1;
         }
+        /* --- AKHIR BAGIAN YANG DIMODIFIKASI --- */
 
         .hero-content {
             position: relative;
