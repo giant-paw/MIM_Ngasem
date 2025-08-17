@@ -137,7 +137,7 @@
                 margin: 20px;
             }
             .login-branding {
-                display: none; /* Sembunyikan sisi gambar di mobile agar fokus ke form */
+                display: none; 
             }
         }
 
@@ -145,17 +145,18 @@
             position: absolute;
             top: 30px;
             left: 30px;
-            display: inline-flex; /* Agar berperilaku seperti tombol */
+            display: inline-flex;
             align-items: center;
             gap: 8px;
-            background-color: var(--light-color); /* Latar belakang putih */
-            color: var(--primary-color); /* Teks warna biru utama */
-            padding: 10px 20px; /* Padding agar lebih besar */
-            border-radius: 50px; /* Sudut sangat tumpul (bentuk pil) */
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            padding: 10px 20px; 
+            border-radius: 50px; 
             font-weight: 600;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1); /* Efek bayangan */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
             z-index: 2;
+            text-decoration: none;
         }
 
         .back-to-home-link:hover {
@@ -164,6 +165,8 @@
             color: var(--secondary-color);
         }
     </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body>
     <a href="{{ route('home') }}" class="back-to-home-link">

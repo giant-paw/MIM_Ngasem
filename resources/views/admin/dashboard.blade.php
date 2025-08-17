@@ -146,12 +146,10 @@
             flex-grow: 1;
         }
         
-        /* --- STATS CARDS GRID (MODIFIED) --- */
         .stats-grid {
             display: grid;
-            /* Lebar minimum kartu diperbesar menjadi 300px */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-            gap: 2rem; /* Jarak antar kartu diperbesar */
+            grid-template-columns: repeat(2, 1fr); /* Selalu 2 kolom */
+            gap: 2rem;
         }
 
         /* --- STAT CARD (MODIFIED) --- */
@@ -189,6 +187,12 @@
             font-size: 2.5rem; /* Ukuran angka diperbesar */
             font-weight: 700;
             color: var(--secondary-color);
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr; /* Jadi 1 kolom di layar kecil */
+            }
         }
         
     </style>
@@ -234,6 +238,7 @@
                             <p class="count">{{ $jumlahGuru }}</p>
                         </div>
                     </div>
+
                     <div class="stat-card">
                         <div class="icon-wrapper bg-green">
                             <i class="fas fa-newspaper"></i>
@@ -243,8 +248,29 @@
                             <p class="count">{{ $jumlahBerita }}</p>
                         </div>
                     </div>
+
+                    <div class="stat-card">
+                        <div class="icon-wrapper bg-blue">
+                            <i class="fas fa-users-cog"></i>
+                        </div>
+                        <div class="info">
+                            <h3>Jumlah Admin</h3>
+                            <p class="count">{{ $jumlahAdmin }}</p>
+                        </div>
                     </div>
+
+                    <div class="stat-card">
+                        <div class="icon-wrapper bg-green">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <div class="info">
+                            <h3>Jumlah Kategori</h3>
+                            <p class="count">{{ $jumlahKategori }}</p>
+                        </div>
+                    </div>
+                </div>
             </main>
+
         </div>
     </div>
 </body>
