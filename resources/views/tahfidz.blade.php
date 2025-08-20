@@ -199,7 +199,7 @@
             <div class="container">
                 <div class="intro-grid">
                     <div class="intro-image">
-                        <img src="{{ asset('images/sekolah.jpeg') }}" alt="Siswa belajar Al-Qur'an">
+                        <img src="{{ asset('images/tahfidz.jpeg') }}" alt="Siswa belajar Al-Qur'an">
                     </div>
                     <div class="intro-content">
                         <h2>Menanamkan Cinta Al-Qur'an Sejak Dini</h2>

@@ -194,7 +194,7 @@
             <div class="container">
                 <div class="intro-grid">
                     <div class="intro-image">
-                        <img src="https://images.unsplash.com/photo-1574169208507-84376144848b?q=80&w=2079&auto=format&fit=crop" alt="Tim Drumband sedang tampil">
+                        <img src="{{ asset('images/ekstra_drumband.jpeg') }}" alt="Tim Drumband sedang tampil">
                     </div>
                     <div class="intro-content">
                         <h2>Harmoni dalam Kebersamaan</h2>

@@ -216,8 +216,7 @@
             color: var(--light-color);
             text-align: center;
             position: relative;
-            /* PERUBAHAN 1: Ganti URL gambar dengan path lokal Anda */
-            background: url("{{ asset('images/anakbelajar.jpg') }}") no-repeat center center/cover;
+            background: url("{{ asset('images/main_header.jpeg') }}") no-repeat center center/cover;
         }
 
         .hero::before {
@@ -227,10 +226,14 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(45deg, rgba(13, 71, 161, 0.7), rgba(25, 118, 210, 0.6));
-            /* PERUBAHAN 2: Tambahkan filter blur pada overlay */
+
+            /* Overlay warna hitam transparan */
+            background: rgba(0, 0, 0, 0.45);
+
+            /* Blur pada gambar belakang */
             backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px); /* Untuk support Safari */
+            -webkit-backdrop-filter: blur(4px);
+
             z-index: 1;
         }
         /* --- AKHIR BAGIAN YANG DIMODIFIKASI --- */

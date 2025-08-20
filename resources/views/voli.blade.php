@@ -73,7 +73,7 @@
         .highlight-card p { font-size: 0.95rem; color: #666; }
         
         /* Call to Action Section */
-        .cta-section { padding: 4rem 0; background: linear-gradient(rgba(13, 71, 161, 0.9), rgba(25, 118, 210, 0.9)), url('https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=1998&auto=format&fit=crop') no-repeat center center/cover; color: var(--light-color); text-align: center; }
+        .cta-section { padding: 4rem 0; background: linear-gradient(rgba(13, 71, 161, 0.9), rgba(25, 118, 210, 0.9)), url('{{ asset('images/voli2.jpeg') }}') no-repeat center center/cover; color: var(--light-color); text-align: center; }
         .cta-section h2 { font-size: 2.2rem; margin-bottom: 1rem; }
         .cta-section p { max-width: 600px; margin: 0 auto 2rem auto; opacity: 0.9; }
         .cta-button { display: inline-block; padding: 0.8rem 2.5rem; background-color: var(--light-color); color: var(--primary-color); border-radius: 50px; font-weight: 600; transition: background-color 0.3s ease, transform 0.3s ease; }
@@ -198,7 +198,7 @@
                         <p>Lebih dari itu, kami menekankan pentingnya kerja sama tim, komunikasi yang efektif, dan menanamkan jiwa sportifitas. Siswa akan belajar cara menang dengan rendah hati dan menerima kekalahan dengan lapang dada.</p>
                     </div>
                     <div class="intro-image">
-                        <img src="https://images.unsplash.com/photo-1542751371-6181a5a8f4c2?q=80&w=2070&auto=format&fit=crop" alt="Tim bola voli sedang bermain">
+                        <img src="{{ asset('images/voli.jpeg') }}" alt="Tim bola voli sedang bermain">
                     </div>
                 </div>
             </div>
