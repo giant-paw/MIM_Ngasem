@@ -9,9 +9,7 @@ use App\Http\Controllers\PublicController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\KategoriController;
 
-Route::get('/', function () {
-    return view('home');
-})->name('home');
+Route::get('/', [PublicController::class, 'home'])->name('home');
 
 // --- Grup Route Khusus Untuk Admin ---
 // Semua route di dalam grup ini akan:

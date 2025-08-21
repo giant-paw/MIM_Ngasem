@@ -238,7 +238,7 @@
             <div class="container">
                 <h2>Bergabunglah dengan Generasi Qur'ani</h2>
                 <p>Mari daftarkan putra-putri Anda dalam Program Tahfidz kami dan saksikan mereka tumbuh menjadi penghafal Al-Qur'an yang membanggakan.</p>
-                <a href="#" class="cta-button">Daftar Sekarang</a>
+                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." class="cta-button">Daftar Sekarang</a>
             </div>
         </section>
     </main>

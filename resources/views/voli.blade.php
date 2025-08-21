@@ -237,7 +237,7 @@
             <div class="container">
                 <h2>Siap Menjadi Bintang Lapangan?</h2>
                 <p>Tunjukkan semangatmu dan jadilah bagian dari tim bola voli yang solid dan berprestasi. Ayo bergabung sekarang!</p>
-                <a href="#" class="cta-button">Hubungi Pelatih</a>
+                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." class="cta-button">Hubungi Pelatih</a>
             </div>
         </section>
 

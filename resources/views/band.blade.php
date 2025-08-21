@@ -238,7 +238,7 @@
             <div class="container">
                 <h2>Jadilah Bagian dari Irama Kemenangan!</h2>
                 <p>Jika kamu memiliki semangat dan menyukai tantangan, ayo bergabung dengan tim Drumband MI Muhammadiyah Ngasem Selatan!</p>
-                <a href="#" class="cta-button">Hubungi Pembimbing</a>
+                <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." class="cta-button">Hubungi Pembimbing</a>
             </div>
         </section>
 

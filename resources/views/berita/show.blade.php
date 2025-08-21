@@ -7,28 +7,52 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
     <style>
+        /* --- Variabel Global & Reset Dasar (Disesuaikan) --- */
         :root {
-            --primary-color: #0056b3;
-            --text-color: #333;
+            --primary-color: #0d47a1;   /* Biru Tua */
+            --secondary-color: #1976d2; /* Biru Terang */
+            --light-color: #ffffff;
+            --dark-color: #333333;
             --meta-color: #666;
             --bg-color: #f9f9f9;
-            --white-color: #ffffff;
-            --border-color: #eee;
+            --border-color: #e0e0e0;
+            --font-family: 'Poppins', sans-serif;
         }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Poppins', sans-serif;
+            font-family: var(--font-family);
             line-height: 1.8;
             margin: 0;
             padding: 0;
             background: var(--bg-color);
-            color: var(--text-color);
+            color: var(--dark-color);
         }
 
-        /* --- Header & Navigation Bar --- */
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        /* --- Header & Navigation Bar (Disesuaikan) --- */
         header {
             position: fixed;
             top: 0;
@@ -79,11 +103,13 @@
             transition: transform 0.3s ease-in-out;
         }
 
-        .nav-links a:hover {
+        .nav-links a:hover,
+        .nav-links a.active {
             color: var(--secondary-color);
         }
 
-        .nav-links a:hover::after {
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
             transform: scaleX(1);
         }
 
@@ -99,7 +125,6 @@
 
         .login-button:hover {
             background-color: var(--secondary-color);
-            color: var(--light-color);
         }
 
         .hamburger {
@@ -111,50 +136,172 @@
             color: var(--primary-color);
         }
 
-        /* --- Main Content --- */
+        /* --- Main Content (Disesuaikan) --- */
+        main {
+            padding-top: 100px; /* Memberi ruang untuk header fixed */
+            padding-bottom: 40px;
+        }
+
         .container {
             max-width: 800px;
-            margin: 40px auto;
+            margin: 0 auto;
             padding: 40px;
-            background: var(--white-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            background: var(--light-color);
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.07);
         }
+        
         .breadcrumbs { margin-bottom: 20px; font-size: 0.9em; color: var(--meta-color); }
-        .breadcrumbs a { color: var(--primary-color); text-decoration: none; }
+        .breadcrumbs a { color: var(--primary-color); text-decoration: none; font-weight: 500;}
+        .breadcrumbs a:hover { text-decoration: underline; }
 
         .article-header h1 {
             font-family: 'Merriweather', serif;
-            font-size: 2.8em;
+            font-size: 2.5em; /* Sedikit disesuaikan agar tidak terlalu besar */
             line-height: 1.3;
             margin-bottom: 15px;
             color: #1a1a1a;
         }
-        .article-meta { color: var(--meta-color); margin-bottom: 30px; font-size: 0.9em; border-top: 1px solid var(--border-color); border-bottom: 1px solid var(--border-color); padding: 10px 0; }
-        .article-meta a { color: var(--primary-color); font-weight: 500; text-decoration: none; }
+        
+        .article-meta { 
+            color: var(--meta-color); 
+            margin-bottom: 30px; 
+            font-size: 0.9em; 
+            border-top: 1px solid var(--border-color); 
+            border-bottom: 1px solid var(--border-color); 
+            padding: 10px 0; 
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .article-meta span { margin-right: 10px; }
+        .article-meta a { color: var(--primary-color); font-weight: 600; text-decoration: none; }
+        .article-meta a:hover { color: var(--secondary-color); }
 
         .featured-image { width: 100%; height: auto; margin-bottom: 30px; border-radius: 8px; }
 
-        .article-content { font-size: 1.1em; }
+        .article-content { font-size: 1.1em; color: var(--dark-color); }
         .article-content p, .article-content ul, .article-content ol, .article-content blockquote { margin-bottom: 1.5em; }
         .article-content img { max-width: 100%; height: auto; display: block; margin: 30px auto; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .article-content h2, .article-content h3 { font-family: 'Merriweather', serif; margin-top: 2em; }
-        .article-content blockquote { border-left: 3px solid var(--primary-color); padding-left: 20px; font-style: italic; color: #555; }
-        .article-content a { color: var(--primary-color); text-decoration: underline; }
+        .article-content h2, .article-content h3 { font-family: 'Merriweather', serif; margin-top: 2em; color: #1a1a1a;}
+        .article-content blockquote { border-left: 4px solid var(--primary-color); padding-left: 20px; font-style: italic; color: #555; background-color: #f7f7f7; padding-top: 10px; padding-bottom: 10px; border-radius: 0 5px 5px 0;}
+        .article-content a { color: var(--primary-color); text-decoration: none; font-weight: 600; border-bottom: 1px dotted var(--primary-color); }
+        .article-content a:hover { color: var(--secondary-color); border-bottom-style: solid; }
 
         .article-footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid var(--border-color); }
-        .social-share a { display: inline-block; margin-right: 10px; padding: 8px 15px; border-radius: 5px; color: var(--white-color); text-decoration: none; font-size: 0.9em; }
+        .social-share a { display: inline-block; margin-right: 10px; padding: 8px 15px; border-radius: 25px; color: var(--light-color); text-decoration: none; font-size: 0.9em; transition: transform 0.2s ease, opacity 0.2s ease;}
+        .social-share a:hover { transform: translateY(-3px); opacity: 0.9; }
         .share-fb { background: #3b5998; }
         .share-tw { background: #1da1f2; }
         .share-wa { background: #25d366; }
         
-        .back-link { display: inline-block; margin-top: 30px; text-decoration: none; color: var(--primary-color); }
+        .back-link { display: inline-block; margin-top: 30px; text-decoration: none; color: var(--primary-color); font-weight: 600; }
+        .back-link:hover { color: var(--secondary-color); }
         
-        /* --- Footer --- */
-        .site-footer { text-align: center; padding: 20px; margin-top: 40px; background: #343a40; color: #f8f9fa; font-size: 0.9em; }
-                
+        /* --- FOOTER --- */
+        footer { 
+            background-color: #1a1a1a; 
+            color: var(--light-color); 
+            padding: 2.5rem 0; 
+            margin-top: 40px;
+        }
+        .footer-container {
+             max-width: 1200px;
+             margin: 0 auto;
+             padding: 0 2rem;
+        }
+        .footer-content { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin-bottom: 2rem; 
+            flex-wrap: wrap; 
+            gap: 1.5rem; 
+        }
+        .footer-info { 
+            display: flex; 
+            align-items: center; 
+            gap: 1rem; 
+        }
+        .footer-logo { 
+            height: 60px; 
+        }
+        .footer-school-name { 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+            color: #f0f0f0; 
+        }
+        .social-links { 
+            display: flex; 
+            gap: 1.2rem; 
+        }
+        .social-links a { 
+            color: #ccc; 
+            transition: color 0.3s ease, transform 0.3s ease; 
+        }
+        .social-links a:hover { 
+            color: var(--light-color); 
+            transform: translateY(-3px); 
+        }
+        .social-links i { 
+            font-size: 1.6rem; 
+        }
+        .footer-bottom { 
+            text-align: center; 
+            border-top: 1px solid #444; 
+            padding-top: 1.5rem; 
+            font-size: 0.9rem; 
+            color: #aaa; 
+        }
+        
+        /* --- Tombol WhatsApp FAB --- */
+        .whatsapp-fab {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background-color: #25d366;
+            color: white;
+            border-radius: 35px;
+            display: flex;
+            align-items: center;
+            padding: 10px 20px;
+            text-decoration: none;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
+            z-index: 1000;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .whatsapp-fab:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .whatsapp-fab i {
+            font-size: 2.2rem;
+            margin-right: 10px;
+        }
+
+        .whatsapp-fab span {
+            display: block;
+        }
+              
         /* Aturan untuk Mobile */
         @media (max-width: 768px) {
+            main {
+                padding-top: 80px;
+            }
+            .container {
+                padding: 20px;
+                margin: 0 15px;
+                width: auto;
+            }
+            .article-header h1 {
+                font-size: 2em;
+            }
+
             nav {
                 padding: 0.8rem 1.5rem;
             }
@@ -164,7 +311,7 @@
                 top: 0;
                 right: -100%;
                 height: 100vh;
-                width: 60%;
+                width: 70%;
                 background-color: rgba(255, 255, 255, 0.98);
                 backdrop-filter: blur(5px);
                 flex-direction: column;
@@ -179,7 +326,7 @@
             }
             
             .nav-links a {
-            font-size: 1.2rem;
+                font-size: 1.2rem;
             }
             
             .login-button {
@@ -190,8 +337,42 @@
                 display: block;
                 z-index: 1001;
             }
-        }
 
+            .footer-content {
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                gap: 2.5rem;
+            }
+
+            .footer-info {
+                flex-direction: column;
+                gap: 0.8rem;
+            }
+             .footer-school-name { 
+                font-size: 1.2rem; 
+            }
+
+            .social-links {
+                justify-content: center;
+            }
+
+            .whatsapp-fab span {
+                display: none; /* Sembunyikan teks di mobile */
+            }
+
+            .whatsapp-fab {
+                padding: 0;
+                width: 60px;
+                height: 60px;
+                border-radius: 50%;
+                justify-content: center;
+            }
+            .whatsapp-fab i {
+                margin-right: 0;
+                font-size: 2.5rem;
+            }
+        }
     </style>
 </head>
 <body>
@@ -199,7 +380,7 @@
     <header>
         <nav>
             <a href="{{ route('home') }}" class="logo">
-                <img src="{{ asset('images/logomim.png') }}" alt="Logo Perusahaan">
+                <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem">
             </a>
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
@@ -216,45 +397,80 @@
         </nav>
     </header>
 
-    <div class="container">
-        <div class="breadcrumbs">
-            <a href="/">Home</a> &raquo; <a href="#">Berita</a> &raquo; <span>{{ Str::limit($berita->judul, 30) }}</span>
+    <main>
+        <div class="container">
+            <div class="breadcrumbs">
+                <a href="{{ route('home') }}">Home</a> &raquo; <a href="{{ route('portal.index') }}">Berita</a> &raquo; <span>{{ Str::limit($berita->judul, 30) }}</span>
+            </div>
+
+            <article>
+                <div class="article-header">
+                    <h1>{{ $berita->judul }}</h1>
+                    <div class="article-meta">
+                        <span><i class="fas fa-user-edit"></i> Ditulis oleh: <strong>{{ $berita->user->name }}</strong></span>
+                        <span><i class="fas fa-folder-open"></i> Kategori: <a href="#">{{ $berita->kategori->nama ?? 'Tidak Berkategori' }}</a></span>
+                        <span><i class="fas fa-calendar-alt"></i> Dipublikasikan pada: {{ $berita->created_at->format('d F Y') }}</span>
+                    </div>
+                </div>
+
+                @if ($berita->gambar_utama)
+                    <img src="{{ Storage::url($berita->gambar_utama) }}" alt="{{ $berita->judul }}" class="featured-image">
+                @endif
+
+                <div class="article-content">
+                    {!! $berita->konten !!}
+                </div>
+
+                <div class="article-footer">
+                    <strong>Bagikan Artikel Ini:</strong>
+                    <div class="social-share" style="margin-top:10px;">
+                        <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank" class="share-fb"><i class="fab fa-facebook-f"></i> Facebook</a>
+                        <a href="https://twitter.com/intent/tweet?url={{ url()->current() }}&text={{ urlencode($berita->judul) }}" target="_blank" class="share-tw"><i class="fab fa-twitter"></i> Twitter</a>
+                        <a href="https://api.whatsapp.com/send?text={{ urlencode($berita->judul . ' - ' . url()->current()) }}" target="_blank" class="share-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+                    </div>
+                </div>
+            </article>
+            
+            <a href="{{ route('portal.index') }}" class="back-link">&larr; Kembali ke Portal Berita</a>
         </div>
+    </main>
 
-        <article>
-            <div class="article-header">
-                <h1>{{ $berita->judul }}</h1>
-                <div class="article-meta">
-                    <span>Ditulis oleh: <strong>{{ $berita->user->name }}</strong></span> |
-                    <span>Kategori: <a href="#">{{ $berita->kategori->nama ?? 'Tidak Berkategori' }}</a></span> |
-                    <span>Dipublikasikan pada: {{ $berita->created_at->format('d F Y') }}</span>
+    <footer>
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-info">
+                    <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem" class="footer-logo">
+                    <p class="footer-school-name">MI Muhammadiyah Ngasem Selatan</p>
+                </div>
+                <div class="social-links">
+                    <a href="https://www.instagram.com/mim.ngasem" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.tiktok.com/@mi_muhammadiyah_ngasem" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                    <a href="https://www.facebook.com/mimuhammadiyahngasem" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="mailto:mimuhngasem@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
                 </div>
             </div>
-
-            @if ($berita->gambar_utama)
-                <img src="{{ Storage::url($berita->gambar_utama) }}" alt="{{ $berita->judul }}" class="featured-image">
-            @endif
-
-            <div class="article-content">
-                {!! $berita->konten !!}
+            <div class="footer-bottom">
+                <p>&copy; {{ date('Y') }} KKN REG UMY 114. All Rights Reserved.</p>
             </div>
-
-            <div class="article-footer">
-                <strong>Bagikan Artikel Ini:</strong>
-                <div class="social-share" style="margin-top:10px;">
-                    <a href="https://www.facebook.com/sharer/sharer.php?u={{ url()->current() }}" target="_blank" class="share-fb"><i class="fab fa-facebook-f"></i> Facebook</a>
-                    <a href="https://twitter.com/intent/tweet?url={{ url()->current() }}&text={{ urlencode($berita->judul) }}" target="_blank" class="share-tw"><i class="fab fa-twitter"></i> Twitter</a>
-                    <a href="https://api.whatsapp.com/send?text={{ urlencode($berita->judul . ' - ' . url()->current()) }}" target="_blank" class="share-wa"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-                </div>
-            </div>
-        </article>
-        
-        <a href="/" class="back-link">&larr; Kembali ke Halaman Utama</a>
-    </div>
-
-    <footer class="site-footer">
-        &copy; {{ date('Y') }} MI Ngasem Selatan. Semua Hak Cipta Dilindungi.
+        </div>
     </footer>
+
+    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
+        class="whatsapp-fab" 
+        target="_blank" 
+        aria-label="Hubungi Kami via WhatsApp">
+            <i class="fab fa-whatsapp"></i>
+            <span>Hubungi Kami</span>
+    </a>
+
+    <script>
+        // Script untuk hamburger menu
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
 
 </body>
 </html>

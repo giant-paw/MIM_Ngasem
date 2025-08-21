@@ -15,621 +15,295 @@
 
     <style>
         /* --- Reset & Variabel Global --- */
-        :root {
-            --primary-color: #0d47a1; /* Biru Tua */
-            --secondary-color: #1976d2; /* Biru Terang */
-            --light-color: #ffffff;
-            --dark-color: #333333;
-            --font-family: 'Poppins', sans-serif;
+    :root {
+        --primary-color: #0d47a1; /* Biru Tua */
+        --secondary-color: #1976d2; /* Biru Terang */
+        --light-color: #ffffff;
+        --dark-color: #333333;
+        --font-family: 'Poppins', sans-serif;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: var(--font-family);
+        line-height: 1.6;
+        color: var(--dark-color);
+    }
+
+    a {
+        text-decoration: none;
+        color: inherit;
+    }
+
+    ul {
+        list-style: none;
+    }
+
+    img {
+        max-width: 100%;
+        display: block;
+    }
+
+    /* --- Header & Navigation Bar --- */
+    header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: var(--light-color);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        z-index: 1000;
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0.8rem 2rem;
+    }
+
+    .logo img {
+        height: 45px;
+    }
+
+    .nav-links {
+        display: flex;
+        gap: 2rem;
+        align-items: center;
+    }
+
+    .nav-links a {
+        font-weight: 600;
+        color: var(--primary-color);
+        padding: 0.5rem 0;
+        position: relative;
+        transition: color 0.3s ease;
+    }
+
+    .nav-links a::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 2px;
+        background-color: var(--secondary-color);
+        bottom: 0;
+        left: 0;
+        transform: scaleX(0);
+        transform-origin: center;
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .nav-links a:hover {
+        color: var(--secondary-color);
+    }
+
+    .nav-links a:hover::after {
+        transform: scaleX(1);
+    }
+
+    /* --- CSS DROPDOWN (DESKTOP) --- */
+    .dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: var(--light-color);
+        border-radius: 8px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        min-width: 200px;
+        z-index: 1001;
+        padding: 0.5rem 0;
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+    .dropdown-menu a {
+        display: block;
+        padding: 0.7rem 1.2rem;
+        font-weight: 400;
+    }
+
+    .dropdown-menu a::after {
+        display: none;
+    }
+
+    .dropdown-menu a:hover {
+        background-color: #f5f5f5;
+        color: var(--secondary-color);
+    }
+
+    .dropdown > a i {
+        margin-left: 0.3rem;
+        font-size: 0.8em;
+        transition: transform 0.3s ease;
+    }
+
+    .dropdown:hover > a i {
+        transform: rotate(180deg);
+    }
+    /* --- END CSS DROPDOWN (DESKTOP) --- */
+
+    .login-button {
+        background-color: var(--primary-color);
+        color: var(--light-color);
+        padding: 0.5rem 1.5rem;
+        border-radius: 20px;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+        margin-left: 1rem;
+    }
+
+    .login-button:hover {
+        background-color: var(--secondary-color);
+        color: var(--light-color);
+    }
+
+    .hamburger {
+        display: none;
+        font-size: 1.5rem;
+        background: none;
+        border: none;
+        cursor: pointer;
+        color: var(--primary-color);
+    }
+
+    /* --- Section Umum & Lainnya (Tidak ada perubahan) --- */
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
+    .section-title { text-align: center; font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
+    .divider { width: 80px; height: 4px; background-color: var(--secondary-color); margin: 0 auto 3rem; border-radius: 2px; }
+    .hero { display: flex; align-items: center; justify-content: center; height: 100vh; color: var(--light-color); text-align: center; position: relative; background: url("{{ asset('images/main_header.jpeg') }}") no-repeat center center/cover; }
+    .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 1; }
+    .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 2rem; }
+    .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
+    .hero p { font-size: 1.25rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+    .cta-button { display: inline-block; padding: 0.8rem 2.5rem; background-color: var(--light-color); color: var(--primary-color); border-radius: 50px; font-weight: 600; transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease; }
+    .cta-button:hover { background-color: var(--secondary-color); color: var(--light-color); transform: translateY(-3px); }
+    .news-section { padding: 4rem 0; background-color: #f9f9f9; }
+    .news-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+    /* ... (CSS lain tidak diubah, jadi saya persingkat agar tidak terlalu panjang) ... */
+    .news-card { position: relative; display: block; overflow: hidden; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .news-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); }
+    .news-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+    .news-card:hover img { transform: scale(1.05); }
+    .card-content { position: absolute; bottom: 0; left: 0; width: 100%; padding: 2.5rem 1.5rem 1.5rem; color: var(--light-color); background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent); z-index: 3; }
+    .card-content h3 { font-size: 1.3rem; line-height: 1.4; margin: 0; }
+    .testimonial-section { padding: 4rem 0; background-color: var(--light-color); text-align: center; }
+    .testimonial-content { max-width: 800px; margin: 2rem auto 0; }
+    .testimonial-content blockquote { font-size: 1.25rem; font-style: italic; line-height: 1.8; color: #555; border: none; margin: 0 0 2rem 0; padding: 0; position: relative; }
+    .testimonial-content blockquote::before { content: '“'; font-family: Georgia, serif; font-size: 4rem; color: var(--secondary-color); position: absolute; left: 50%; top: -2.5rem; transform: translateX(-50%); }
+    .whatsapp-fab { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 35px; display: flex; align-items: center; padding: 10px 20px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); z-index: 1000; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+    .whatsapp-fab:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+    .whatsapp-fab i { font-size: 2.2rem; margin-right: 10px; }
+    .testimonial-avatar { width: 100px; height: 100px; border-radius: 50%; border: 4px solid var(--light-color); box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15); margin: 0 auto 1rem; }
+    .testimonial-name { font-size: 1.2rem; font-weight: 600; color: var(--primary-color); margin-bottom: 0.25rem; }
+    .testimonial-role { color: #777; font-size: 0.9rem; }
+    .testimonial-dots { display: flex; justify-content: center; gap: 0.5rem; margin-top: 2rem; }
+    .testimonial-dots .dot { width: 10px; height: 10px; border-radius: 50%; background-color: #ccc; cursor: pointer; transition: background-color 0.3s ease; }
+    .testimonial-dots .dot.active { background-color: var(--secondary-color); }
+    footer { background-color: #1a1a1a; color: var(--light-color); padding: 2.5rem 0; }
+    .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; }
+    .footer-info { display: flex; align-items: center; gap: 1rem; }
+    .footer-logo { height: 80px; }
+    .footer-school-name { font-size: 1.5rem; font-weight: 600; color: #f0f0f0; }
+    .social-links { display: flex; flex-direction: row; align-items: center; gap: 1.2rem; }
+    .social-links a { color: #ccc; transition: color 0.3s ease, transform 0.3s ease; }
+    .social-links a:hover { color: var(--light-color); transform: translateY(-3px); }
+    .social-links i { font-size: 1.6rem; }
+    .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
+    .about-us-section { padding: 5rem 0; background-color: var(--light-color); }
+    .about-us-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 3rem; align-items: center; }
+    .about-us-image img { width: 100%; height: auto; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+    .about-us-content h2 { font-size: 2.2rem; color: var(--primary-color); margin-bottom: 1rem; position: relative; padding-bottom: 0.5rem; }
+    .about-us-content h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 60px; height: 4px; background-color: var(--secondary-color); border-radius: 2px; }
+    .about-us-content p { color: #555; margin-bottom: 1.5rem; line-height: 1.8; }
+    .about-us-stats { display: flex; gap: 2rem; margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid #e0e0e0; }
+    .stat-item { text-align: center; }
+    .stat-item .number { font-size: 2rem; font-weight: 700; color: var(--primary-color); }
+    .stat-item .label { font-size: 0.9rem; color: #777; }
+
+    /* --- Media Queries untuk Responsif --- */
+    @media (min-width: 769px) { .news-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 992px) { .news-grid { grid-template-columns: repeat(3, 1fr); } }
+    @media (max-width: 992px) { .about-us-grid { grid-template-columns: 1fr; } }
+
+    /* Aturan untuk Mobile */
+    @media (max-width: 768px) {
+        nav { padding: 0.8rem 1.5rem; }
+        .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; /* Mengurangi gap agar submenu tidak terlalu jauh */ transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+        .nav-links.active { right: 0; }
+        .nav-links a { font-size: 1.2rem; }
+        .login-button { display: none; }
+        .hamburger { display: block; z-index: 1001; }
+        .hero h1 { font-size: 2.5rem; }
+        .hero p { font-size: 1rem; }
+        .section-title { font-size: 2rem; }
+        .testimonial-content blockquote { font-size: 1.1rem; }
+        .testimonial-content blockquote::before { font-size: 3rem; top: -2rem; }
+        .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
+        .footer-info { flex-direction: column; gap: 0.8rem; }
+        .footer-school-name { font-size: 1.2rem; }
+        .social-links { justify-content: center; }
+        
+        /* --- START: CSS DROPDOWN MOBILE (TIDAK ADA DROPDOWN, SEMUA TAMPIL) --- */
+
+        /* Sembunyikan panah dropdown di mobile */
+        .dropdown > a i {
+            display: none;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: var(--font-family);
-            line-height: 1.6;
-            color: var(--dark-color);
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        /* --- Header & Navigation Bar --- */
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: var(--light-color);
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0.8rem 2rem;
-        }
-
-        .logo img {
-            height: 45px;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            color: var(--primary-color);
-            padding: 0.5rem 0;
-            position: relative;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            background-color: var(--secondary-color);
-            bottom: 0;
-            left: 0;
-            transform: scaleX(0);
-            transform-origin: center;
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .nav-links a:hover::after {
-            transform: scaleX(1);
-        }
-
-        /* --- START: CSS BARU UNTUK DROPDOWN --- */
-        .dropdown {
-            position: relative;
-        }
-
-        .dropdown-menu {
-            display: none; /* Sembunyikan secara default */
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background-color: var(--light-color);
-            border-radius: 8px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            min-width: 200px;
-            z-index: 1001;
-            padding: 0.5rem 0;
-            opacity: 0;
-            transform: translateY(10px);
-            transition: opacity 0.3s ease, transform 0.3s ease;
-        }
-
-        .dropdown:hover .dropdown-menu {
-            display: block; /* Tampilkan saat hover di desktop */
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu a {
-            display: block;
-            padding: 0.7rem 1.2rem;
-            font-weight: 400; /* Font lebih tipis dari menu utama */
+        /* Jadikan menu "Ekstrakurikuler" seperti label biasa */
+        .dropdown > a {
+            color: var(--primary-color); /* Bisa juga diberi warna lain agar terlihat seperti judul */
+            font-weight: 700;
         }
         
-        .dropdown-menu a::after {
-             display: none; /* Hilangkan garis bawah dari menu utama */
+        /* Atur agar submenu (ul) selalu terlihat */
+        .dropdown-menu {
+            display: block;
+            position: static;
+            background-color: transparent;
+            box-shadow: none;
+            width: 100%;
+            text-align: center;
+            padding: 0;
+            margin-top: 0.5rem; /* Jarak antara judul dan item submenu */
+            opacity: 1; /* Pastikan selalu terlihat */
+            transform: none;
+            transition: none;
+        }
+        
+        /* Beri gaya pada item submenu agar terlihat seperti sub-list */
+        .dropdown-menu a {
+            font-size: 1rem; /* Ukuran font lebih kecil */
+            font-weight: 400; /* Font lebih tipis */
+            color: var(--secondary-color); /* Warna berbeda */
+            padding: 0.4rem 1rem; /* Padding lebih kecil */
         }
 
         .dropdown-menu a:hover {
-            background-color: #f5f5f5;
-            color: var(--secondary-color);
-        }
-        
-        .dropdown > a i {
-            margin-left: 0.3rem;
-            font-size: 0.8em;
-            transition: transform 0.3s ease;
-        }
-        
-        .dropdown:hover > a i {
-             transform: rotate(180deg);
-        }
-        /* --- END: CSS BARU UNTUK DROPDOWN --- */
-
-        .login-button {
-            background-color: var(--primary-color);
-            color: var(--light-color);
-            padding: 0.5rem 1.5rem;
-            border-radius: 20px;
-            font-weight: 600;
-            transition: background-color 0.3s ease;
-            margin-left: 1rem;
-        }
-
-        .login-button:hover {
-            background-color: var(--secondary-color);
-            color: var(--light-color);
-        }
-
-        .hamburger {
-            display: none;
-            font-size: 1.5rem;
-            background: none;
-            border: none;
-            cursor: pointer;
+            background-color: transparent;
             color: var(--primary-color);
         }
-
-        /* --- Section Umum --- */
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: var(--primary-color);
-            margin-bottom: 0.5rem;
-        }
-
-        .divider {
-            width: 80px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            margin: 0 auto 3rem;
-            border-radius: 2px;
-        }
-
-        /* --- Hero Section (BAGIAN YANG DIMODIFIKASI) --- */
-        .hero {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            color: var(--light-color);
-            text-align: center;
-            position: relative;
-            background: url("{{ asset('images/main_header.jpeg') }}") no-repeat center center/cover;
-        }
-
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-
-            /* Overlay warna hitam transparan */
-            background: rgba(0, 0, 0, 0.45);
-
-            /* Blur pada gambar belakang */
-            backdrop-filter: blur(4px);
-            -webkit-backdrop-filter: blur(4px);
-
-            z-index: 1;
-        }
-        /* --- AKHIR BAGIAN YANG DIMODIFIKASI --- */
-
-        .hero-content {
-            position: relative;
-            z-index: 2;
-            max-width: 800px;
-            padding: 0 2rem;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.3);
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-button {
-            display: inline-block;
-            padding: 0.8rem 2.5rem;
-            background-color: var(--light-color);
-            color: var(--primary-color);
-            border-radius: 50px;
-            font-weight: 600;
-            transition: background-color 0.3s ease, color 0.3s ease, transform 0.3s ease;
-        }
-
-        .cta-button:hover {
-            background-color: var(--secondary-color);
-            color: var(--light-color);
-            transform: translateY(-3px);
-        }
-
-        /* --- News Section --- */
-        .news-section {
-            padding: 4rem 0;
-            background-color: #f9f9f9;
-        }
-
-        .news-grid {
-            display: grid;
-            gap: 2rem;
-            grid-template-columns: 1fr;
-        }
-
-        .news-card {
-            position: relative;
-            display: block;
-            overflow: hidden;
-            border-radius: 15px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .news-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
-        }
-
-        .news-card img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .news-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .card-content {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            padding: 2.5rem 1.5rem 1.5rem;
-            color: var(--light-color);
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
-            z-index: 3;
-        }
-
-        .card-content h3 {
-            font-size: 1.3rem;
-            line-height: 1.4;
-            margin: 0;
-        }
-
-        /* --- Testimonial Section --- */
-        .testimonial-section {
-            padding: 4rem 0;
-            background-color: var(--light-color);
-            text-align: center;
-        }
-
-        .testimonial-content {
-            max-width: 800px;
-            margin: 2rem auto 0;
-        }
-
-        .testimonial-content blockquote {
-            font-size: 1.25rem;
-            font-style: italic;
-            line-height: 1.8;
-            color: #555;
-            border: none;
-            margin: 0 0 2rem 0;
-            padding: 0;
-            position: relative;
-        }
-
-        .testimonial-content blockquote::before {
-            content: '“';
-            font-family: Georgia, serif;
-            font-size: 4rem;
-            color: var(--secondary-color);
-            position: absolute;
-            left: 50%;
-            top: -2.5rem;
-            transform: translateX(-50%);
-        }
-
-        .whatsapp-fab {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background-color: #25d366;
-            color: white;
-            border-radius: 35px; /* Membuat sudut menjadi pil */
-            display: flex;
-            align-items: center;
-            padding: 10px 20px;
-            text-decoration: none;
-            font-family: 'Poppins', sans-serif;
-            font-weight: 600;
-            font-size: 1rem;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-            z-index: 1000;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .whatsapp-fab:hover {
-            transform: translateY(-5px); /* Sedikit terangkat saat disentuh */
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .whatsapp-fab i {
-            font-size: 2.2rem; /* Ukuran ikon diperbesar */
-            margin-right: 10px; /* Jarak antara ikon dan teks */
-        }
-
-        .testimonial-avatar {
-            width: 100px;
-            height: 100px;
-            border-radius: 50%;
-            border: 4px solid var(--light-color);
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
-            margin: 0 auto 1rem;
-        }
-
-        .testimonial-name {
-            font-size: 1.2rem;
-            font-weight: 600;
-            color: var(--primary-color);
-            margin-bottom: 0.25rem;
-        }
-
-        .testimonial-role {
-            color: #777;
-            font-size: 0.9rem;
-        }
-
-        .testimonial-dots {
-            display: flex;
-            justify-content: center;
-            gap: 0.5rem;
-            margin-top: 2rem;
-        }
-
-        .testimonial-dots .dot {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background-color: #ccc;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-
-        .testimonial-dots .dot.active {
-            background-color: var(--secondary-color);
-        }
-
-
-        /* --- FOOTER --- */
-        footer { background-color: #1a1a1a; color: var(--light-color); padding: 2.5rem 0; }
-        .footer-content { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; flex-wrap: wrap; gap: 1.5rem; }
-        .footer-info { display: flex; align-items: center; gap: 1rem; }
-        .footer-logo { height: 80px; }
-        .footer-school-name { font-size: 1.5rem; font-weight: 600; color: #f0f0f0; }
-        .social-links { display: flex; flex-direction: row; align-items: center; gap: 1.2rem; }
-        .social-links a { color: #ccc; transition: color 0.3s ease, transform 0.3s ease; }
-        .social-links a:hover { color: var(--light-color); transform: translateY(-3px); }
-        .social-links i { font-size: 1.6rem; }
-        .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
-
-        
-        /* --- About Section (Tambahan) --- */
-        .about-us-section {
-            padding: 5rem 0;
-            background-color: var(--light-color);
-        }
-
-        .about-us-grid {
-            display: grid;
-            grid-template-columns: 1fr 1.2fr; /* Kolom kiri lebih kecil dari kanan */
-            gap: 3rem;
-            align-items: center;
-        }
-
-        .about-us-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-        }
-
-        .about-us-content h2 {
-            font-size: 2.2rem;
-            color: var(--primary-color);
-            margin-bottom: 1rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
-
-        .about-us-content h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 4px;
-            background-color: var(--secondary-color);
-            border-radius: 2px;
-        }
-
-        .about-us-content p {
-            color: #555;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
-        }
-
-        .about-us-stats {
-            display: flex;
-            gap: 2rem;
-            margin-top: 2rem;
-            padding-top: 1.5rem;
-            border-top: 1px solid #e0e0e0;
-        }
-
-        .stat-item {
-            text-align: center;
-        }
-
-        .stat-item .number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary-color);
-        }
-
-        .stat-item .label {
-            font-size: 0.9rem;
-            color: #777;
-        }
-
-
-        /* --- Media Queries untuk Responsif --- */
-        /* Aturan untuk Tablet */
-        @media (min-width: 769px) {
-            .news-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        /* Aturan untuk Desktop */
-        @media (min-width: 992px) {
-            .news-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-        
-        @media (max-width: 992px) {
-            .about-us-grid {
-                grid-template-columns: 1fr; /* Ubah jadi 1 kolom di tablet */
-            }
-        }
-
-        /* Aturan untuk Mobile */
-        @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 1.5rem;
-            }
-
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 60%;
-                background-color: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(5px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2.5rem;
-                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
-            }
-
-            .nav-links.active {
-                right: 0;
-            }
-            
-            .nav-links a {
-              font-size: 1.2rem;
-            }
-            
-            .login-button {
-                display: none;
-            }
-
-            .hamburger {
-                display: block;
-                z-index: 1001;
-            }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
-            .hero p {
-                font-size: 1rem;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .testimonial-content blockquote {
-                font-size: 1.1rem;
-            }
-
-            .testimonial-content blockquote::before {
-                font-size: 3rem;
-                top: -2rem;
-            }
-            
-            /* Penyesuaian Footer untuk Mobile */
-            .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
-            .footer-info { flex-direction: column; gap: 0.8rem; }
-            .footer-school-name { font-size: 1.2rem; }
-            .social-links { justify-content: center; }
-            
-            /* --- START: CSS DROPDOWN UNTUK MOBILE --- */
-            .dropdown:hover .dropdown-menu {
-                display: none; /* Matikan hover di mobile */
-            }
-
-            .dropdown-menu.show {
-                display: block; /* Tampilkan dengan class .show dari JS */
-                opacity: 1;
-                transform: translateY(0);
-            }
-            
-            .dropdown-menu {
-                position: static; /* Hapus positioning absolut */
-                box-shadow: none;
-                background-color: transparent;
-                padding-left: 1.5rem; /* Beri indentasi agar terlihat seperti submenu */
-                width: 100%;
-                text-align: center;
-                transform: none; /* Reset transform */
-                transition: none; /* Hapus transisi hover */
-            }
-
-            .dropdown-menu a {
-                padding: 0.5rem 1rem;
-            }
-            /* --- END: CSS DROPDOWN UNTUK MOBILE --- */
-        }
+        /* --- END: CSS DROPDOWN MOBILE --- */
+    }
     </style>
 </head>
 <body>
@@ -674,7 +348,7 @@
             <div class="hero-content">
                 <h1>Membangun Generasi Unggul Berkarakter</h1>
                 <p>Komitmen kami untuk memajukan pendidikan, dakwah, dan sosial kemasyarakatan.</p>
-                <a href="#" class="cta-button">Selengkapnya</a>
+                <a href="{{ route('about.index') }}" class="cta-button">Selengkapnya</a>
             </div>
         </section>
         
@@ -684,15 +358,23 @@
                 <div class="divider"></div>
                 <div class="news-grid">
 
-                <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1579532537598-459ecdaf39cc?q=80&w=1974&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Al Azhar Lahirkan Peneliti...</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1556761175-5973dc0f32e7?q=80&w=1932&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Sambut Perjuangan Pendidikan...</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?q=80&w=2070&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Haflah Akhirussanah 2025...</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1543269865-cbf427effbad?q=80&w=2070&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Workshop Guru: Metode Inovatif</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=2071&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Kolaborasi Internasional...</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?q=80&w=2070&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Peringatan Hari Kemerdekaan...</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1588681664899-f142ff2dc9b1?q=80&w=1974&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Gerakan Sekolah Bersih...</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1542744173-8e7e53415bb0?q=80&w=2070&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Olimpiade Sains Nasional...</h3></div></a>
-                    <a href="#" class="news-card"><img src="https://images.unsplash.com/photo-1552664730-d307ca884978?q=80&w=2070&auto=format&fit=crop" alt="Gambar Berita"><div class="card-content"><h3>Pelatihan Kepemimpinan OSIS</h3></div></a>
+                    @forelse ($daftarBerita as $berita)
+                        <a href="{{ route('berita.show', $berita->slug) }}" class="news-card">
+                            @if ($berita->gambar_utama)
+                                <img src="{{ Storage::url($berita->gambar_utama) }}" alt="Gambar {{ $berita->judul }}">
+                            @else
+                                <img src="https://placehold.co/600x400/e8e8e8/666?text=Berita" alt="Gambar Berita">
+                            @endif
+                            <div class="card-content">
+                                <h3>{{ Str::limit($berita->judul, 50) }}</h3>
+                            </div>
+                        </a>
+                    @empty
+                        <p style="text-align: center; grid-column: 1 / -1; color: #777;">
+                            Belum ada berita terkini yang diterbitkan.
+                        </p>
+                    @endforelse
+
                 </div>
             </div>
         </section>
@@ -719,7 +401,7 @@
             <div class="container">
                 <div class="about-us-grid">
                     <div class="about-us-image">
-                        <img src="{{ asset('images/sekolah.jpeg') }}" alt="Gedung Sekolah MI Muhammadiyah Ngasem Selatan">
+                        <img src="{{ asset('images/gedung_mi.jpeg') }}" alt="Gedung Sekolah MI Muhammadiyah Ngasem Selatan">
                     </div>
                     <div class="about-us-content">
                         <h2>Cerita Kami</h2>
@@ -785,18 +467,6 @@
             navLinks.classList.toggle('active');
         });
 
-        // --- START: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
-        const dropdown = document.querySelector('.dropdown > a');
-
-        dropdown.addEventListener('click', (e) => {
-            // Cek jika tampilan mobile (hamburger terlihat)
-            if (window.innerWidth <= 768) {
-                e.preventDefault(); // Mencegah link berpindah halaman
-                const dropdownMenu = dropdown.nextElementSibling;
-                dropdownMenu.classList.toggle('show');
-            }
-        });
-        // --- END: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
     </script>
 
     <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 

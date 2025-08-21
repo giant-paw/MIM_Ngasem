@@ -198,7 +198,7 @@
                         <p>Melalui metode kepanduan, siswa diajarkan kemandirian, kedisiplinan, keterampilan bertahan di alam bebas, kepemimpinan, serta semangat tolong-menolong dalam bingkai ajaran Islam.</p>
                     </div>
                     <div class="intro-image">
-                        <img src="https://images.unsplash.com/photo-1593721396163-aa21e2e924a4?q=80&w=2070&auto=format&fit=crop" alt="Anggota Hizbul Wathan berbaris">
+                        <img src="{{ asset('images/hw1.jpeg') }}" alt="Anggota Hizbul Wathan berbaris">
                     </div>
                 </div>
             </div>
@@ -239,16 +239,16 @@
                 <div class="divider"></div>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1525177398159-8d28b84ebd29?q=80&w=2070&auto=format&fit=crop" alt="Kegiatan berkemah Hizbul Wathan">
+                        <img src="{{ asset('images/hw2.jpeg') }}" alt="Kegiatan berkemah Hizbul Wathan">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?q=80&w=1974&auto=format&fit=crop" alt="Menjelajah alam">
+                        <img src="{{ asset('images/hw3.jpeg') }}" alt="Menjelajah alam">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1558023773-698f1a102717?q=80&w=2070&auto=format&fit=crop" alt="Belajar simpul tali">
+                        <img src="{{ asset('images/hw4.jpeg') }}" alt="Belajar simpul tali">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1628191081014-a212a4a35f30?q=80&w=2070&auto=format&fit=crop" alt="Api unggun saat berkemah">
+                        <img src="{{ asset('images/hw5.jpeg') }}" alt="Api unggun saat berkemah">
                     </div>
                 </div>
             </div>

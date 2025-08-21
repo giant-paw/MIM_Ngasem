@@ -198,7 +198,7 @@
                         <p>Melalui kegiatan ini, siswa diajak untuk belajar disiplin, bekerja sama dalam tim, serta meningkatkan rasa percaya diri dengan tampil di berbagai acara sekolah maupun di luar sekolah.</p>
                     </div>
                     <div class="intro-image">
-                        <img src="https://images.unsplash.com/photo-1598115237803-17b51b7b3a98?q=80&w=1956&auto=format&fit=crop" alt="Siswa-siswi sedang menari tarian tradisional">
+                        <img src="{{ asset('images/tari1.jpeg') }}" alt="Siswa-siswi sedang menari tarian tradisional">
                     </div>
                 </div>
             </div>
@@ -210,16 +210,16 @@
                 <div class="divider"></div>
                 <div class="gallery-grid">
                     <div class="gallery-item">
-                        <img src="https://plus.unsplash.com/premium_photo-1664303399092-23c233f20e98?q=80&w=2070&auto=format&fit=crop" alt="Penampilan tari di panggung">
+                        <img src="{{ asset('images/tari2.jpeg') }}" alt="Penampilan tari di panggung">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1522813589926-04a20a79b294?q=80&w=2070&auto=format&fit=crop" alt="Latihan tari di dalam ruangan">
+                        <img src="{{ asset('images/tari3.jpeg') }}" alt="Latihan tari di dalam ruangan">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1547866763-8a8b0c8b6e4b?q=80&w=1954&auto=format&fit=crop" alt="Detail kostum penari">
+                        <img src="{{ asset('images/tari4.jpeg') }}" alt="Detail kostum penari">
                     </div>
                     <div class="gallery-item">
-                        <img src="https://images.unsplash.com/photo-1516603011497-2a8d5236f015?q=80&w=2070&auto=format&fit=crop" alt="Ekspresi penari cilik">
+                        <img src="{{ asset('images/tari5.jpeg') }}" alt="Ekspresi penari cilik">
                     </div>
                 </div>
             </div>
@@ -232,11 +232,11 @@
                     <ul>
                         <li>
                             <span class="icon"><i class="fas fa-calendar-alt"></i></span>
-                            <span><strong>Jadwal Latihan:</strong> Setiap hari Sabtu, Pukul 10:00 - 12:00 WIB</span>
+                            <span><strong>Jadwal Latihan:</strong> Setiap hari Selasa, Pukul 12:00 - 14:30 WIB</span>
                         </li>
                         <li>
                             <span class="icon"><i class="fas fa-map-marker-alt"></i></span>
-                            <span><strong>Lokasi:</strong> Aula MI Muhammadiyah Ngasem Selatan</span>
+                            <span><strong>Lokasi:</strong> Masjid Al-Muhajirin MI Muhammadiyah Ngasem Selatan</span>
                         </li>
                         <li>
                             <span class="icon"><i class="fas fa-user"></i></span>

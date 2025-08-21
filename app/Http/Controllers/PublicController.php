@@ -30,4 +30,17 @@ class PublicController extends Controller
             'daftarBerita' => $semuaBerita
         ]);
     }
+
+    public function home()
+    {
+        // Ambil 9 berita terbaru yang statusnya 'published'
+        $beritaTerkini = Berita::where('status', 'published')
+                               ->latest() // Mengurutkan dari yang terbaru
+                               ->take(9)    
+                               ->get();
+
+        return view('home', [
+            'daftarBerita' => $beritaTerkini
+        ]);
+    }
 }

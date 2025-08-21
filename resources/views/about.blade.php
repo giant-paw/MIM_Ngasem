@@ -520,7 +520,7 @@
                 <h2 style="text-align:center; color: var(--primary-color); margin-bottom: 2rem;">Fasilitas Kami</h2>
                 <p style="text-align: center; color: #555;">Kami menyediakan fasilitas yang mendukung kegiatan belajar mengajar dan pengembangan diri siswa.</p>
                 <div class="facilities-image">
-                    <img src="{{ asset('images/sekolah.jpeg') }}" alt="Gedung Sekolah MI Muhammadiyah Ngasem Selatan">
+                    <img src="{{ asset('images/gedung_mi.jpeg') }}" alt="Gedung Sekolah MI Muhammadiyah Ngasem Selatan">
                 </div>
                 <p style="margin-top: 1.5rem; text-align: center; color: #555;">Gedung sekolah yang representatif dengan fasilitas olahraga dan ruang kelas yang nyaman.</p>
             </div>
