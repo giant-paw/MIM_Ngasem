@@ -185,11 +185,11 @@
         color: var(--primary-color);
     }
 
-    /* --- Section Umum & Lainnya (Tidak ada perubahan) --- */
+    /* --- Section Umum & Lainnya --- */
     .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
     .section-title { text-align: center; font-size: 2.5rem; color: var(--primary-color); margin-bottom: 0.5rem; }
     .divider { width: 80px; height: 4px; background-color: var(--secondary-color); margin: 0 auto 3rem; border-radius: 2px; }
-    .hero { display: flex; align-items: center; justify-content: center; height: 100vh; color: var(--light-color); text-align: center; position: relative; background: url("{{ asset('images/main_header.jpeg') }}") no-repeat center center/cover; }
+    .hero { display: flex; align-items: center; justify-content: center; height: 100vh; color: var(--light-color); text-align: center; position: relative; background: url("{{ asset('images/kelas3.jpeg') }}") no-repeat center center/cover; }
     .hero::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px); z-index: 1; }
     .hero-content { position: relative; z-index: 2; max-width: 800px; padding: 0 2rem; }
     .hero h1 { font-size: 3.5rem; font-weight: 700; margin-bottom: 1rem; text-shadow: 2px 2px 8px rgba(0,0,0,0.3); }
@@ -198,7 +198,6 @@
     .cta-button:hover { background-color: var(--secondary-color); color: var(--light-color); transform: translateY(-3px); }
     .news-section { padding: 4rem 0; background-color: #f9f9f9; }
     .news-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
-    /* ... (CSS lain tidak diubah, jadi saya persingkat agar tidak terlalu panjang) ... */
     .news-card { position: relative; display: block; overflow: hidden; border-radius: 15px; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08); transition: transform 0.3s ease, box-shadow 0.3s ease; }
     .news-card:hover { transform: translateY(-8px); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12); }
     .news-card img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
@@ -247,7 +246,7 @@
     /* Aturan untuk Mobile */
     @media (max-width: 768px) {
         nav { padding: 0.8rem 1.5rem; }
-        .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; /* Mengurangi gap agar submenu tidak terlalu jauh */ transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+        .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
         .nav-links.active { right: 0; }
         .nav-links a { font-size: 1.2rem; }
         .login-button { display: none; }
@@ -262,20 +261,23 @@
         .footer-school-name { font-size: 1.2rem; }
         .social-links { justify-content: center; }
         
-        /* --- START: CSS DROPDOWN MOBILE (TIDAK ADA DROPDOWN, SEMUA TAMPIL) --- */
+        /* --- START: CSS DROPDOWN MOBILE --- */
+        
+        /* PERBAIKAN: Menambahkan ini untuk menengahkan teks "Ekstrakurikuler" */
+        .dropdown {
+            width: 100%;
+            text-align: center;
+        }
 
-        /* Sembunyikan panah dropdown di mobile */
         .dropdown > a i {
             display: none;
         }
 
-        /* Jadikan menu "Ekstrakurikuler" seperti label biasa */
         .dropdown > a {
-            color: var(--primary-color); /* Bisa juga diberi warna lain agar terlihat seperti judul */
+            color: var(--primary-color);
             font-weight: 700;
         }
         
-        /* Atur agar submenu (ul) selalu terlihat */
         .dropdown-menu {
             display: block;
             position: static;
@@ -284,18 +286,17 @@
             width: 100%;
             text-align: center;
             padding: 0;
-            margin-top: 0.5rem; /* Jarak antara judul dan item submenu */
-            opacity: 1; /* Pastikan selalu terlihat */
+            margin-top: 0.5rem;
+            opacity: 1;
             transform: none;
             transition: none;
         }
         
-        /* Beri gaya pada item submenu agar terlihat seperti sub-list */
         .dropdown-menu a {
-            font-size: 1rem; /* Ukuran font lebih kecil */
-            font-weight: 400; /* Font lebih tipis */
-            color: var(--secondary-color); /* Warna berbeda */
-            padding: 0.4rem 1rem; /* Padding lebih kecil */
+            font-size: 1rem;
+            font-weight: 400;
+            color: var(--secondary-color);
+            padding: 0.4rem 1rem;
         }
 
         .dropdown-menu a:hover {
@@ -315,7 +316,7 @@
             </a>
             
             <ul class="nav-links">
-                <li><a href="{{ route('home') }}">Home</a></li>
+                <li><a href="{{ route('home') }}" class="active">Home</a></li>
                 
                 <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
                 
@@ -387,7 +388,7 @@
                     <blockquote>
                         "Ibu adalah madrasah pertama bagi anaknya, setelah itu adalah lingkungan. Bagi saya pendidikan tidak hanya sebatas akademis, namun akhlak & adab juga harus dimiliki. Untuk itu, memilih sekolah sangatlah penting bagi kami, pilihan menyekolahkan keempat anak kami ke MI Muhammadiyah Ngasem Selatan yang menurut kami Sekolah Islam terbaik."
                     </blockquote>
-                    <img src="{{ asset('images/pakAgungzoom.JPG') }}" alt="Foto Jihan Fahira" class="testimonial-avatar">
+                    <img src="{{ asset('images/pakAgungzoom.JPG') }}" alt="Foto Kepala Madrasah" class="testimonial-avatar">
                     <p class="testimonial-name">Agung Nugroho, S.Pd.I</p>
                     <p class="testimonial-role">Kepala Madrasah</p>
                 </div>
@@ -469,7 +470,7 @@
 
     </script>
 
-    <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
+    <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut..." 
        class="whatsapp-fab" 
        target="_blank" 
        aria-label="Hubungi Kami via WhatsApp">

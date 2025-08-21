@@ -26,17 +26,17 @@
         .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; }
         main { padding-top: 80px; }
 
-        /* Header & Navigasi */
+        /* --- Header & Navigasi --- */
         header { position: fixed; top: 0; left: 0; width: 100%; background-color: var(--light-color); box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); z-index: 1000; }
         nav { display: flex; justify-content: space-between; align-items: center; max-width: 1200px; margin: 0 auto; padding: 0.8rem 2rem; }
         .logo img { height: 45px; }
         .nav-links { display: flex; gap: 2rem; align-items: center; }
         .nav-links a { font-weight: 600; color: var(--primary-color); padding: 0.5rem 0; position: relative; transition: color 0.3s ease; }
-        .nav-links a::after { content: ''; position: absolute; width: 100%; height: 2px; background-color: var(--secondary-color); bottom: 0; left: 0; transform: scaleX(0); transition: transform 0.3s ease-in-out; }
+        .nav-links a::after { content: ''; position: absolute; width: 100%; height: 2px; background-color: var(--secondary-color); bottom: 0; left: 0; transform: scaleX(0); transform-origin: center; transition: transform 0.3s ease-in-out; }
         .nav-links a:hover, .nav-links a.active { color: var(--secondary-color); }
         .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
         
-        /* Dropdown CSS */
+        /* --- Dropdown CSS --- */
         .dropdown { position: relative; }
         .dropdown-menu { display: none; position: absolute; top: 100%; left: 0; background-color: var(--light-color); border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); min-width: 200px; z-index: 1001; padding: 0.5rem 0; opacity: 0; transform: translateY(10px); transition: opacity 0.3s ease, transform 0.3s ease; }
         .dropdown:hover .dropdown-menu { display: block; opacity: 1; transform: translateY(0); }
@@ -63,7 +63,7 @@
         .intro-content h2 { font-size: 2rem; color: var(--primary-color); margin-bottom: 1rem; }
         .intro-content p { color: #555; margin-bottom: 1rem; line-height: 1.8; }
         
-        /* Highlights Section (for activities/principles) */
+        /* Highlights Section */
         .highlights-section { padding: 4rem 0; background-color: #eef7ff; }
         .highlights-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; margin-top: 3rem; }
         .highlight-card { background-color: var(--light-color); padding: 2rem; border-radius: 15px; text-align: center; box-shadow: 0 5px 20px rgba(0,0,0,0.07); transition: transform 0.3s ease; }
@@ -90,8 +90,13 @@
         .social-links a:hover { color: var(--light-color); transform: translateY(-3px); }
         .social-links i { font-size: 1.6rem; }
         .footer-bottom { text-align: center; border-top: 1px solid #444; padding-top: 1.5rem; font-size: 0.9rem; color: #aaa; }
+
+        /* Tombol WhatsApp FAB */
+        .whatsapp-fab { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 35px; display: flex; align-items: center; padding: 10px 20px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); z-index: 1000; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .whatsapp-fab:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+        .whatsapp-fab i { font-size: 2.2rem; margin-right: 10px; }
         
-        /* Responsive Media Queries */
+        /* --- Responsive Media Queries --- */
         @media (max-width: 992px) {
             .intro-grid { grid-template-columns: 1fr; }
             .intro-image { order: -1; margin-bottom: 2rem; }
@@ -99,53 +104,61 @@
         
         @media (max-width: 768px) {
             nav { padding: 0.8rem 1.5rem; }
-            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 60%; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 2.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
             .nav-links.active { right: 0; }
             .nav-links a { font-size: 1.2rem; }
             .login-button { display: none; }
             .hamburger { display: block; z-index: 1001; }
             .section-title { font-size: 2rem; }
-            .footer-school-name { font-size: 1.2rem; }
             .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
             .footer-info { flex-direction: column; gap: 0.8rem; }
+            .footer-school-name { font-size: 1.2rem; }
             .social-links { justify-content: center; }
             
-            /* Dropdown Mobile CSS */
-            .dropdown:hover .dropdown-menu { display: none; }
-            .dropdown-menu.show { display: block; opacity: 1; }
-            .dropdown-menu { position: static; box-shadow: none; background-color: transparent; padding-left: 1.5rem; width: 100%; text-align: center; transform: none; transition: none; }
-            .dropdown-menu a { padding: 0.5rem 1rem; }
-        }
+            /* --- START: CSS DROPDOWN MOBILE --- */
 
-                    .whatsapp-fab {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background-color: #25d366;
-                color: white;
-                border-radius: 35px; /* Membuat sudut menjadi pil */
-                display: flex;
-                align-items: center;
-                padding: 10px 20px;
-                text-decoration: none;
-                font-family: 'Poppins', sans-serif;
-                font-weight: 600;
+            /* PERBAIKAN: Menambahkan ini untuk menengahkan teks "Ekstrakurikuler" */
+            .dropdown {
+                width: 100%;
+                text-align: center;
+            }
+
+            .dropdown > a i {
+                display: none;
+            }
+
+            .dropdown > a {
+                color: var(--primary-color);
+                font-weight: 700;
+            }
+            
+            .dropdown-menu {
+                display: block;
+                position: static;
+                background-color: transparent;
+                box-shadow: none;
+                width: 100%;
+                text-align: center;
+                padding: 0;
+                margin-top: 0.5rem;
+                opacity: 1;
+                transform: none;
+                transition: none;
+            }
+            
+            .dropdown-menu a {
                 font-size: 1rem;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-                z-index: 1000;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                font-weight: 400;
+                color: var(--secondary-color);
+                padding: 0.4rem 1rem;
             }
 
-            .whatsapp-fab:hover {
-                transform: translateY(-5px); /* Sedikit terangkat saat disentuh */
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            .dropdown-menu a:hover {
+                background-color: transparent;
+                color: var(--primary-color);
             }
-
-            .whatsapp-fab i {
-                font-size: 2.2rem; /* Ukuran ikon diperbesar */
-                margin-right: 10px; /* Jarak antara ikon dan teks */
-            }
-
+            /* --- END: CSS DROPDOWN MOBILE --- */
+        }
     </style>
 </head>
 <body>
@@ -154,13 +167,12 @@
             <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM">
             </a>
-           
+            
             <ul class="nav-links">
                 <li><a href="{{ route('home') }}">Home</a></li>
-                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
-                
+                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
                 <li class="dropdown">
-                    <a href="#">Ekstrakurikuler <i class="fas fa-caret-down"></i></a>
+                    <a href="#" class="active">Ekstrakurikuler <i class="fas fa-caret-down"></i></a>
                     <ul class="dropdown-menu">
                         <li><a href="{{ route('tahfidz.index') }}">Tahfidz</a></li>
                         <li><a href="{{ route('tari.index') }}">Tari</a></li>
@@ -169,9 +181,7 @@
                         <li><a href="{{ route('hizbul.index') }}">Hizbul Wathan</a></li>
                     </ul>
                 </li>
-                
-                <li><a href="{{ route('portal.index') }}">Portal Berita</a></li>
-                
+                <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
                 <li><a href="{{ route('about.index') }}">About Us</a></li>
             </ul>
             
@@ -253,44 +263,43 @@
                 </div>
             </div>
         </section>
-
     </main>
     
     <footer>
          <div class="container">
-              <div class="footer-content">
-                   <div class="footer-info">
-                        <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem" class="footer-logo">
-                        <p class="footer-school-name">MI Muhammadiyah Ngasem Selatan</p>
-                   </div>
-                   <div class="social-links">
-                        <a href="https://www.instagram.com/mim.ngasem" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-                        <a href="https://www.tiktok.com/@mi_muhammadiyah_ngasem" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
-                        <a href="https://www.facebook.com/mimuhammadiyahngasem" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
-                        <a href="mailto:mimuhngasem@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
-                   </div>
-              </div>
-              <div class="footer-bottom">
-                   <p>&copy; 2025 KKN REG UMY 114. All Rights Reserved.</p>
-              </div>
+               <div class="footer-content">
+                    <div class="footer-info">
+                         <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem" class="footer-logo">
+                         <p class="footer-school-name">MI Muhammadiyah Ngasem Selatan</p>
+                    </div>
+                    <div class="social-links">
+                         <a href="https://www.instagram.com/mim.ngasem" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                         <a href="https://www.tiktok.com/@mi_muhammadiyah_ngasem" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+                         <a href="https://www.facebook.com/mimuhammadiyahngasem" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                         <a href="mailto:mimuhngasem@gmail.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+               </div>
+               <div class="footer-bottom">
+                    <p>&copy; 2025 KKN REG UMY 114. All Rights Reserved.</p>
+               </div>
          </div>
-     </footer>
+    </footer>
 
-     <script>
-         const hamburger = document.querySelector('.hamburger');
-         const navLinks = document.querySelector('.nav-links');
-         hamburger.addEventListener('click', () => {
-              navLinks.classList.toggle('active');
-         });
-         
-        const dropdown = document.querySelector('.dropdown > a');
-        dropdown.addEventListener('click', (e) => {
-            if (window.innerWidth <= 768) {
-                e.preventDefault();
-                const dropdownMenu = dropdown.nextElementSibling;
-                dropdownMenu.classList.toggle('show');
-            }
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+        
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
         });
-     </script>
+    </script>
+
+    <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut..." 
+       class="whatsapp-fab" 
+       target="_blank" 
+       aria-label="Hubungi Kami via WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+        <span>Hubungi Kami</span>
+    </a>
 </body>
 </html>

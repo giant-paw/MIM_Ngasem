@@ -15,9 +15,7 @@
         /* --- Variabel Global & Reset Dasar --- */
         :root {
             --primary-color: #0d47a1;
-            /* Biru Tua */
             --secondary-color: #1976d2;
-            /* Biru Terang */
             --light-color: #ffffff;
             --dark-color: #333333;
             --font-family: 'Poppins', sans-serif;
@@ -58,7 +56,6 @@
 
         main {
             padding-top: 80px;
-            /* Memberi ruang untuk header fixed */
         }
 
         .section-title {
@@ -137,13 +134,13 @@
             transform: scaleX(1);
         }
         
-        /* --- START: CSS BARU UNTUK DROPDOWN --- */
+        /* --- CSS DROPDOWN (DESKTOP) --- */
         .dropdown {
             position: relative;
         }
 
         .dropdown-menu {
-            display: none; /* Sembunyikan secara default */
+            display: none;
             position: absolute;
             top: 100%;
             left: 0;
@@ -159,7 +156,7 @@
         }
 
         .dropdown:hover .dropdown-menu {
-            display: block; /* Tampilkan saat hover di desktop */
+            display: block;
             opacity: 1;
             transform: translateY(0);
         }
@@ -167,11 +164,11 @@
         .dropdown-menu a {
             display: block;
             padding: 0.7rem 1.2rem;
-            font-weight: 400; /* Font lebih tipis dari menu utama */
+            font-weight: 400;
         }
         
         .dropdown-menu a::after {
-             display: none; /* Hilangkan garis bawah dari menu utama */
+            display: none;
         }
 
         .dropdown-menu a:hover {
@@ -186,9 +183,9 @@
         }
         
         .dropdown:hover > a i {
-             transform: rotate(180deg);
+            transform: rotate(180deg);
         }
-        /* --- END: CSS BARU UNTUK DROPDOWN --- */
+        /* --- END CSS DROPDOWN (DESKTOP) --- */
 
         .login-button {
             background-color: var(--primary-color);
@@ -215,7 +212,7 @@
 
         /* --- Style Halaman "About Us" --- */
         .about-header {
-            padding-top: 120px;
+            padding-top: 4rem; /* Disesuaikan agar tidak terlalu jauh */
             padding-bottom: 4rem;
             background-color: var(--light-color);
             text-align: center;
@@ -230,7 +227,6 @@
             margin: 0 auto 1.5rem auto;
             text-align: justify;
             color: #eee;
-            /* Mengubah warna teks agar terlihat di latar belakang biru */
         }
 
         .vision-mission {
@@ -259,6 +255,10 @@
 
         .vision-mission .card p, .vision-mission .card ul {
             color: var(--dark-color);
+        }
+        
+        .vision-mission .card li {
+            margin-bottom: 0.5rem;
         }
 
         .facilities-section {
@@ -338,125 +338,72 @@
             font-size: 0.9rem;
             color: #aaa;
         }
+        
+        /* Tombol WhatsApp FAB */
+        .whatsapp-fab { position: fixed; bottom: 30px; right: 30px; background-color: #25d366; color: white; border-radius: 35px; display: flex; align-items: center; padding: 10px 20px; text-decoration: none; font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 1rem; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25); z-index: 1000; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+        .whatsapp-fab:hover { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3); }
+        .whatsapp-fab i { font-size: 2.2rem; margin-right: 10px; }
 
         /* --- Media Queries untuk Responsif --- */
         @media (max-width: 768px) {
-            nav {
-                padding: 0.8rem 1.5rem;
-            }
+            nav { padding: 0.8rem 1.5rem; }
+            .nav-links { position: fixed; top: 0; right: -100%; height: 100vh; width: 70%; max-width: 300px; background-color: rgba(255, 255, 255, 0.98); backdrop-filter: blur(5px); flex-direction: column; justify-content: center; align-items: center; gap: 1.5rem; transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1); }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.2rem; }
+            .login-button { display: none; }
+            .hamburger { display: block; z-index: 1001; }
+            .section-title { font-size: 2rem; }
+            
+            /* Penyesuaian Footer untuk Mobile */
+            .footer-content { flex-direction: column; justify-content: center; text-align: center; gap: 2.5rem; }
+            .footer-info { flex-direction: column; gap: 0.8rem; }
+            .footer-school-name { font-size: 1.2rem; }
+            .social-links { justify-content: center; }
+            
+            /* --- START: CSS DROPDOWN MOBILE --- */
 
-            .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                height: 100vh;
-                width: 60%;
-                background-color: rgba(255, 255, 255, 0.98);
-                backdrop-filter: blur(5px);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2.5rem;
-                transition: right 0.4s cubic-bezier(0.77, 0, 0.175, 1);
+            /* PERBAIKAN: Menambahkan ini untuk menengahkan teks "Ekstrakurikuler" */
+            .dropdown {
+                width: 100%;
+                text-align: center;
             }
-
-            .nav-links.active {
-                right: 0;
-            }
-
-            .nav-links a {
-                font-size: 1.2rem;
-            }
-
-            .login-button {
+            
+            .dropdown > a i {
                 display: none;
             }
 
-            .hamburger {
-                display: block;
-                z-index: 1001;
-            }
-
-            .section-title {
-                font-size: 2rem;
-            }
-
-            /* Penyesuaian Footer untuk Mobile */
-            .footer-content {
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
-                gap: 2.5rem;
-            }
-
-            .footer-info {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            .footer-school-name {
-                font-size: 1.2rem;
-            }
-
-            .social-links {
-                justify-content: center;
-            }
-            
-            /* --- START: CSS DROPDOWN UNTUK MOBILE --- */
-            .dropdown:hover .dropdown-menu {
-                display: none; /* Matikan hover di mobile */
-            }
-
-            .dropdown-menu.show {
-                display: block; /* Tampilkan dengan class .show dari JS */
-                opacity: 1;
+            .dropdown > a {
+                color: var(--primary-color);
+                font-weight: 700;
             }
             
             .dropdown-menu {
-                position: static; /* Hapus positioning absolut */
-                box-shadow: none;
+                display: block;
+                position: static;
                 background-color: transparent;
-                padding-left: 1.5rem; /* Beri indentasi agar terlihat seperti submenu */
+                box-shadow: none;
                 width: 100%;
                 text-align: center;
-                transform: none; /* Reset transform */
-                transition: none; /* Hapus transisi hover */
+                padding: 0;
+                margin-top: 0.5rem;
+                opacity: 1;
+                transform: none;
+                transition: none;
             }
-
+            
             .dropdown-menu a {
-                padding: 0.5rem 1rem;
-            }
-            /* --- END: CSS DROPDOWN UNTUK MOBILE --- */
-        }
-
-        .whatsapp-fab {
-                position: fixed;
-                bottom: 30px;
-                right: 30px;
-                background-color: #25d366;
-                color: white;
-                border-radius: 35px; /* Membuat sudut menjadi pil */
-                display: flex;
-                align-items: center;
-                padding: 10px 20px;
-                text-decoration: none;
-                font-family: 'Poppins', sans-serif;
-                font-weight: 600;
                 font-size: 1rem;
-                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.25);
-                z-index: 1000;
-                transition: transform 0.3s ease, box-shadow 0.3s ease;
+                font-weight: 400;
+                color: var(--secondary-color);
+                padding: 0.4rem 1rem;
             }
 
-            .whatsapp-fab:hover {
-                transform: translateY(-5px); /* Sedikit terangkat saat disentuh */
-                box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+            .dropdown-menu a:hover {
+                background-color: transparent;
+                color: var(--primary-color);
             }
-
-            .whatsapp-fab i {
-                font-size: 2.2rem; /* Ukuran ikon diperbesar */
-                margin-right: 10px; /* Jarak antara ikon dan teks */
-            }
+            /* --- END: CSS DROPDOWN MOBILE --- */
+        }
     </style>
 </head>
 
@@ -464,7 +411,7 @@
 
     <header>
         <nav>
-            <a href="/" class="logo">
+            <a href="{{ route('home') }}" class="logo">
                 <img src="{{ asset('images/logomim.png') }}" alt="Logo MIM Ngasem">
             </a>
             
@@ -486,7 +433,7 @@
                 
                 <li><a href="{{ route('dataguru.index') }}">Data Guru</a></li>
                 
-                <li><a href="{{ route('about.index') }}">About Us</a></li>
+                <li><a href="{{ route('about.index') }}" class="active">About Us</a></li>
             </ul>
 
             <a href="{{ route('login') }}" class="login-button">Login Admin</a>
@@ -499,7 +446,7 @@
             <div class="container">
                 <h1 class="section-title">Tentang Kami</h1>
                 <div class="divider"></div>
-                <p style="text-align: center; max-width: 700px; margin: 0 auto;">Mengenal lebih dekat MI Muhammadiyah Ngasem Selatan, lembaga pendidikan yang berdedikasi untuk mencetak generasi unggul berkarakter Islami.</p>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto; color: var(--dark-color);">Mengenal lebih dekat MI Muhammadiyah Ngasem Selatan, lembaga pendidikan yang berdedikasi untuk mencetak generasi unggul berkarakter Islami.</p>
             </div>
         </section>
 
@@ -507,7 +454,7 @@
             <div class="container">
                 <h2 style="text-align:center; color: var(--light-color); margin-bottom: 2rem;">Sejarah Singkat</h2>
                 <p>
-                    Berdiri sejak tahun XXXX, MI Muhammadiyah Ngasem Selatan merupakan bagian dari amal usaha Muhammadiyah di bidang pendidikan. Didirikan atas semangat untuk memberikan pendidikan dasar yang berkualitas dengan landasan nilai-nilai Islam yang kuat. Sejak awal, kami berkomitmen untuk menjadi madrasah yang tidak hanya unggul dalam bidang akademik, tetapi juga dalam pembentukan akhlak mulia, kemandirian, dan jiwa kepemimpinan siswa.
+                    Berdiri sejak tahun 1968, MI Muhammadiyah Ngasem Selatan merupakan bagian dari amal usaha Muhammadiyah di bidang pendidikan. Didirikan atas semangat untuk memberikan pendidikan dasar yang berkualitas dengan landasan nilai-nilai Islam yang kuat. Sejak awal, kami berkomitmen untuk menjadi madrasah yang tidak hanya unggul dalam bidang akademik, tetapi juga dalam pembentukan akhlak mulia, kemandirian, dan jiwa kepemimpinan siswa.
                 </p>
                 <p>
                     Dengan dukungan dari masyarakat dan persyarikatan, madrasah kami terus berkembang, menambah fasilitas, dan meningkatkan kualitas tenaga pengajar demi memberikan pelayanan pendidikan terbaik bagi putra-putri di lingkungan Ngasem dan sekitarnya.
@@ -526,7 +473,7 @@
             </div>
         </section>
 
-        <section class="about-section" style="background-color: var(--light-color);">
+        <section class="about-section" style="background-color: var(--light-color); padding-bottom: 5rem;">
             <div class="container">
                 <h2 style="text-align:center; color: var(--primary-color); margin-bottom: 2rem;">Visi & Misi</h2>
                 <div class="vision-mission">
@@ -569,28 +516,15 @@
     </footer>
 
     <script>
-        // Script untuk hamburger menu
         const hamburger = document.querySelector('.hamburger');
         const navLinks = document.querySelector('.nav-links');
+        
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
         });
-
-        // --- START: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
-        const dropdown = document.querySelector('.dropdown > a');
-
-        dropdown.addEventListener('click', (e) => {
-            // Cek jika tampilan mobile (hamburger terlihat)
-            if (window.innerWidth <= 768) {
-                e.preventDefault(); // Mencegah link berpindah halaman
-                const dropdownMenu = dropdown.nextElementSibling;
-                dropdownMenu.classList.toggle('show');
-            }
-        });
-        // --- END: JAVASCRIPT BARU UNTUK DROPDOWN MOBILE ---
     </script>
 
-    <a href="https://wa.me/6281234567890?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
+    <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut..." 
         class="whatsapp-fab" 
         target="_blank" 
         aria-label="Hubungi Kami via WhatsApp">

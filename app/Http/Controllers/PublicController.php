@@ -33,10 +33,9 @@ class PublicController extends Controller
 
     public function home()
     {
-        // Ambil 9 berita terbaru yang statusnya 'published'
         $beritaTerkini = Berita::where('status', 'published')
                                ->latest() // Mengurutkan dari yang terbaru
-                               ->take(9)    
+                               ->take(6)    
                                ->get();
 
         return view('home', [
