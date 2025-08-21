@@ -252,7 +252,7 @@
             <div class="container">
                 <h2>Jadilah Bagian dari Irama Kemenangan!</h2>
                 <p>Jika kamu memiliki semangat dan menyukai tantangan, ayo bergabung dengan tim Drumband MI Muhammadiyah Ngasem Selatan!</p>
-                <a href="https://wa.me/6289694921194?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20ekstrakurikuler%20Drumband." class="cta-button">Hubungi Pembimbing</a>
+                <a href="https://wa.me/6281802765855?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20ekstrakurikuler%20Drumband." class="cta-button">Hubungi Pembimbing</a>
             </div>
         </section>
     </main>
@@ -286,7 +286,7 @@
         });
     </script>
 
-    <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut..." 
+    <a href="https://wa.me/6281802765855?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut..." 
        class="whatsapp-fab" 
        target="_blank" 
        aria-label="Hubungi Kami via WhatsApp">

@@ -251,7 +251,7 @@
             <div class="container">
                 <h2>Siap Menjadi Bintang Lapangan?</h2>
                 <p>Tunjukkan semangatmu dan jadilah bagian dari tim bola voli yang solid dan berprestasi. Ayo bergabung sekarang!</p>
-                <a href="https://wa.me/6289694921194?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20ekstrakurikuler%20Bola%20Voli." class="cta-button">Hubungi Pelatih</a>
+                <a href="https://wa.me/6281802765855?text=Halo%20Admin%2C%20saya%20tertarik%20dengan%20ekstrakurikuler%20Bola%20Voli." class="cta-button">Hubungi Pelatih</a>
             </div>
         </section>
 
@@ -286,7 +286,7 @@
         });
     </script>
 
-    <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut..." 
+    <a href="https://wa.me/6281802765855?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20mendapatkan%20informasi%20lebih%20lanjut..." 
        class="whatsapp-fab" 
        target="_blank" 
        aria-label="Hubungi Kami via WhatsApp">

@@ -221,7 +221,7 @@
         </div>
     </footer>
 
-    <a href="https://wa.me/6289694921194?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
+    <a href="https://wa.me/6281802765855?text=Halo%20Admin%20MI%20Ngasem%20Selatan,%20saya%20ingin%20bertanya..." 
         class="whatsapp-fab" 
         target="_blank" 
         aria-label="Hubungi Kami via WhatsApp">
